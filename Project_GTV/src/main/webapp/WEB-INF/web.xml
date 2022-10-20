@@ -2,7 +2,10 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
-
+	<!-- 스프링 api인 ContextLoaderListener에 의해서  root-context.xml 파일이 로드 되어져 실행된다.
+	이 파일의 역할은 스프링 AOP를 통한 트랜잭션 적용(서비스), 모델 DAO 설정, ORM인 mybatis 설정, 스피링 api를
+	통한 오라클 연결(스프링 jdbc) -->
+	
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -15,6 +18,8 @@
 	</listener>
 
 	<!-- Processes application requests -->
+		<!-- 스프링 api인 DispatcherServlet에 의해서 로드 실행하는 servlet-context.xml 파일의
+	역할은 스프링 컨트롤러를 통해서 해당 뷰페이지가 보이는 영역이다. -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
