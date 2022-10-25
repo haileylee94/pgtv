@@ -7,5 +7,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.gtv.vo.MovieComVO" alias="mvcom"/>
+		
+		<typeAlias type="com.gtv.vo.MemberVO" alias="member"/>
 	</typeAliases>
 </configuration>

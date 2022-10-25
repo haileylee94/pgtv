@@ -5,11 +5,14 @@
 	<!-- 스프링 api인 ContextLoaderListener에 의해서  root-context.xml 파일이 로드 되어져 실행된다.
 	이 파일의 역할은 스프링 AOP를 통한 트랜잭션 적용(서비스), 모델 DAO 설정, ORM인 mybatis 설정, 스피링 api를
 	통한 오라클 연결(스프링 jdbc) -->
+
 	
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+	<!-- security-context.xml 경로 지정 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/root-context.xml</param-value>
+		<param-value>/WEB-INF/spring/root-context.xml
+		/WEB-INF/spring/security-context.xml</param-value>
 	</context-param>
 	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
@@ -50,4 +53,16 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+	<!-- 스프링 시큐리티 필터 추가 -->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	
 </web-app>

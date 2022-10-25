@@ -21,3 +21,10 @@ create sequence user_no_seq
 start with 1 -- 1부터 시작
 increment by 1 -- 1씩 증가
 nocache; -- 임시메모리 사용안함
+
+-- 회원 아이디와 권한 부여 테이블
+create table gtv_authorities(
+    user_id number(38) not null -- 유저번호
+    ,authority varchar2(50) not null -- 아이디 권한
+    ,constraint authorities_user_id_fk foreign key(user_id) references movie_user(user_id) -- 외래키(주종관계에서 종속테이블)
+);

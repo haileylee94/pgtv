@@ -1,5 +1,7 @@
 package com.gtv.vo;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,4 +25,6 @@ public class MemberVO {
 	private String del_cont;
 	private String del_date;
 	
+	// 여기에 멤버 권한 추가
+	private List<AuthVO> auth;
 }
