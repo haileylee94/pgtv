@@ -1,0 +1,233 @@
+@charset "UTF-8";
+
+/* body{
+	padding: 50px;
+} */
+.swiper{
+	/*position: relative;
+	top: 50px;*/
+	max-width: 100%;
+	height: 700px;
+	
+}
+.swiper-slide{
+		background-size: 100% 700px;
+		/*background-size: cover;*/
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-position: center;
+		overflow: hidden;
+}
+
+.swiper-slide img{
+	width: 60px;
+	height: 60px;
+	
+}
+
+.swiper-pagination-bullet{ /*페이지를 이동할 때 아래 하얀 바로 어디 페이지인지 보여줌*/
+	width: 40px;
+	height: 3px;
+	border-radius: 0;
+	background-color: #fff;
+}
+
+.swiper-pagination-bullet-active{
+	background: #fff;
+	width: 80px;
+}
+
+.swiper-button-next.swiper-button-disabled,
+.swiper-button-prev.swiper-button-disabled{
+	opacity: 0; /*제일 왼쪽으로 갈때는 왼쪽 화살표가 없어지고, 오른쪽은 그 반대*/
+}
+
+.swiper-button-next,
+.swiper-button-prev{
+	width: 40px;
+	height: 40px;
+	background-color: rgba(240, 240, 240, 0.7);
+	backdrop-filter: blur(3px);
+	background-size: 18px;
+	background-position: center;
+	background-repeat: no-repeat;
+	z-index: 2;
+	border-radius: 50%;
+	-webkit-transition: 0.4s;
+	transition: 0.4s;
+	position: absolute;
+}
+
+.swiper-button-prev:after,
+.swiper-rtl .swiper-button-next:after,
+.swiper-button-next:after,
+.swiper-rtl .swiper-button-prev:after{
+	display: none;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover{
+	background-color: #004fff;
+	box-shadow: 0 4px 12px rgba(0, 79, 255, 0.4);
+}
+
+.swiper-button-prev,
+.swiper-button-prev:hover{
+	background-image: url(../images/main_movie/prev_arrow2.svg);
+	left: 20px;
+}
+
+.swiper-button-next,
+.swiper-button-next:hover{
+	background-image: url(../images/main_movie/next_arrow.svg);
+	right: 20px;
+}
+
+/*swiper*/
+
+.now-top5,
+.upcoming-top5{
+	min-width: 1280px;
+	width: 100%;
+	height: 400px;
+	margin: 130px auto;
+	/* background: yellow; */
+}
+
+.top5_title{
+	display: flex;
+    width: 900px;
+    font-size: 15px;
+    line-height: 36px;
+}
+/* .top5_section .top5_title{
+	background: red;
+} */
+
+.now-top5 .top5_title .title_area,
+.upcoming-top5 .top5_title .title_area,
+.seemore{
+	line-height: 36px;
+	margin: 0px 50px 10px 130px;
+}
+
+.moredetails{
+	display: none;
+}
+
+.title_area:hover + .moredetails{
+	display: block;
+}
+
+.moredetails img{
+	width: 12px;
+	height: 12px;
+}
+.now-top5 .top5_title .title_area,
+.upcoming-top5 .top5_title .title_area
+{
+	font-size: 25px;
+	/* background: green;  */
+	/* color: black; */
+}
+
+.seemore{
+	float: right;
+	font-size: 18px;
+	color: darkgray;
+	/* background: pink; */
+}
+.top5_programes{
+	/* background: skyblue; */
+	width: 100%;
+	height: 340px;
+	text-align: center;
+	margin: 10px auto;
+}/*카드들을 화면 정 가운데에 배치하기 위하여 container로 묶어줌*/
+.card-box{
+	position: relative;
+	border-radius: 16px;
+	width: 250px;
+	height: 330px;
+	margin-right: 30px;
+	box-shadow: 0 20px 35px rgba(0,0,0,0.26);
+	overflow: hidden;
+	display: inline-block;
+	/* margin: 10px; */
+	transition: 0.5s;
+}
+.card-box:hover .text-wrap{
+	transform: scale(0.95);
+	opacity: 1.5;
+}/*마우스 오버시 크기가 작아진다.*/
+.img-gradient{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(rgba(0,0,0,0),rgba(0,0,0,1));
+	z-index: 1;
+	opacity: 0;
+}
+
+.card-box:hover .img-gradient{
+	opacity: 2;
+}
+.text-wrap{
+	position: absolute;
+	/* bottom: 0; */
+	top: 80px;
+	left: 35px;
+	padding: 24px;
+	z-index: 1;
+	text-align: center;
+	opacity: 0;
+}
+
+.text-wrap #booking,
+.text-wrap .btm-info{
+	border: 2px solid #eee;
+	border-radius: 14px;
+	font-size: 22px;
+	font-weight: bold;
+	color: #eee;
+	text-align: center;
+	padding: 5px 20px ;
+}
+
+.text-wrap .btm-info{
+	margin-top: 20px;
+}
+
+.banner_01,
+#ad-beer{
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+.banner_01{
+	width: 1000px;
+	height: 300px;
+}
+
+.banner_01 img{
+	width: 1000px;
+	height: 300px;
+	margin-left: 450px;
+}
+
+#ad-beer{
+	margin-top: 30px;
+	height: 250px;
+}
+
+#ad-beer img{
+	width: 1000px;
+	height: 250px;
+}
+
+
+
+

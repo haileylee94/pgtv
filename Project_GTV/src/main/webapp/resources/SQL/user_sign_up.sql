@@ -1,28 +1,36 @@
 create table movie_user(
-    user_no number(38) primary key -- À¯Àú¹øÈ£
-    ,user_id varchar2(50) not null -- ¾ÆÀÌµğ
-    ,user_pw varchar2(200) not null -- ºñ¹Ğ¹øÈ£(¾ÏÈ£È­)
-    ,user_name varchar2(50) not null -- ÀÌ¸§
-    ,user_gender int not null -- ¼ºº° (1.³² 2.¿©)
-    ,user_phone1 varchar2(10) not null -- ¿¬¶ôÃ³1
-    ,user_phone2 varchar2(10) not null -- ¿¬¶ôÃ³2
-    ,user_phone3 varchar2(10) not null -- ¿¬¶ôÃ³3
-    ,user_birth1 varchar2(5) not null -- ³â
-    ,user_birth2 varchar2(5) not null -- ¿ù
-    ,user_birth3 varchar2(5) not null -- ÀÏ
-    ,user_date date -- °¡ÀÔ³¯Â¥
-    ,user_state int default 1 -- °¡ÀÔ»óÅÂ 1ÀÌ¸é °¡ÀÔ, 0ÀÌ¸é Å»Åğ
-    ,del_cont varchar2(200) -- Å»Åğ »çÀ¯
-    ,del_date date -- Å»Åğ ³¯Â¥
+    user_no number(38) primary key -- ìœ ì €ë²ˆí˜¸
+    ,user_id varchar2(50) not null -- ì•„ì´ë””
+    ,user_pw varchar2(200) not null -- ë¹„ë°€ë²ˆí˜¸(ì•”í˜¸í™”)
+    ,user_name varchar2(50) not null -- ì´ë¦„
+    ,user_gender int not null -- ì„±ë³„ (1.ë‚¨ 2.ì—¬)
+    ,user_phone1 varchar2(10) not null -- ì—°ë½ì²˜1
+    ,user_phone2 varchar2(10) not null -- ì—°ë½ì²˜2
+    ,user_phone3 varchar2(10) not null -- ì—°ë½ì²˜3
+    ,user_birth1 varchar2(5) not null -- ë…„
+    ,user_birth2 varchar2(5) not null -- ì›”
+    ,user_birth3 varchar2(5) not null -- ì¼
+    ,user_date date -- ê°€ì…ë‚ ì§œ
+    ,user_state int default 1 -- ê°€ì…ìƒíƒœ 1ì´ë©´ ê°€ì…, 0ì´ë©´ íƒˆí‡´
+    ,del_cont varchar2(200) -- íƒˆí‡´ ì‚¬ìœ 
+    ,del_date date -- íƒˆí‡´ ë‚ ì§œ
 );
 
--- user_no_seq »ı¼º
+-- user_no_seq ìƒì„±
 create sequence user_no_seq
-start with 1 -- 1ºÎÅÍ ½ÃÀÛ
-increment by 1 -- 1¾¿ Áõ°¡
-nocache; -- ÀÓ½Ã¸Ş¸ğ¸® »ç¿ë¾ÈÇÔ
+start with 1 -- 1ë¶€í„° ì‹œì‘
+increment by 1 -- 1ì”© ì¦ê°€
+nocache; -- ì„ì‹œë©”ëª¨ë¦¬ ì‚¬ìš©ì•ˆí•¨
+
 
 alter table movie_user drop column email;
 select * from movie_user;
 alter table movie_user add email varchar2(30) not null;
 alter table movie_user add email_domain varchar2(30) not null;
+
+-- íšŒì› ì•„ì´ë””ì™€ ê¶Œí•œ ë¶€ì—¬ í…Œì´ë¸”
+create table gtv_authorities(
+    user_id number(38) not null -- ìœ ì €ë²ˆí˜¸
+    ,authority varchar2(50) not null -- ì•„ì´ë”” ê¶Œí•œ
+    ,constraint authorities_user_id_fk foreign key(user_id) references movie_user(user_id) -- ì™¸ë˜í‚¤(ì£¼ì¢…ê´€ê³„ì—ì„œ ì¢…ì†í…Œì´ë¸”)
+);
