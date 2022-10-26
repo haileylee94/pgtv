@@ -1,0 +1,203 @@
+@charset "UTF-8";
+
+#sign_up {
+	background-color: white;
+	width: 900px;
+	height: 2500px;
+	position: relative;
+	left: 295px;
+	margin-top:-10px;
+	margin-bottom:-10px;
+}
+
+input {
+	display: flex;
+}
+
+
+#id_box{
+ top:51px;
+}
+
+#id_box{
+ position:relative;
+ top:200px;
+ left:310px;
+}
+#pwd_box{
+ position:relative;
+ top:400px;
+ left:310px;
+}
+#pwd_box_check{
+ position:relative;
+ top:600px;
+ left:310px;
+}
+#name_box{
+ position:relative;
+ top:800px;
+ left:310px;
+}
+#birth_box{
+ position:relative;
+ top:1000px;
+ left:321px;
+ display:flex;
+ width:500px;
+}
+#gender_box{
+ position:relative;
+ top:1200px;
+ left:310px;
+}
+input{
+ border-width: 2px 2px 2px 2px;
+ width:288px;
+ height:37px;
+ font-size:18px;
+}
+#birth_box input{
+ height:39px;
+ width:85px;
+ font-size:18px;
+ border-width: 2px 2px 2px 2px;
+}
+#year_box{
+ position:relative;
+ right:10px;
+}
+#day_box{
+ position:relative;
+ left:10px;
+}
+#phone_number{
+ position:relative;
+ top:1600px;
+ left:311px;
+ display:flex;
+ text-align:center;
+}
+#phone01{
+ position:relative;
+ right:1px;
+}
+
+#phone03{
+ position:relative;
+ left:1px;
+}
+#phone_number input{
+ height:39px;
+ width:89px;
+ font-size:18px;
+ border-width: 2px 2px 2px 2px;
+}
+#email_box{
+ position:relative;
+ top:1400px;
+ left:320px;
+ display:flex;
+}
+#email_text{
+ position:relative;
+ right:10px
+}
+#email_text input{
+ width:192px;
+ height:39px;
+ font-size:18px;
+ border-width: 2px 2px 2px 2px;
+}
+#email_domain input{
+ width:89px;
+ height:39px;
+ font-size:18px;
+ border-width: 2px 2px 2px 2px;
+}
+b{
+ display:flex;
+}
+#id_title{
+ position:relative;
+ top:194px;
+ left:309px;
+ font-size:20px;
+}
+#pwd_title{
+ position:relative;
+ font-size:20px;
+ top:393px;
+ left:309px;
+}
+#pwd_check_title{
+ position:relative;
+ font-size:20px;
+ top:595px;
+ left:309px;
+}
+#name_title{
+ position:relative;
+ font-size:20px;
+ top:796px;
+ left:309px;
+}
+#birth_title{
+ position:relative;
+ font-size:20px;
+ top:996px;
+ left:309px;
+}
+#gender_title{
+ position:relative;
+ font-size:20px;
+ top:1197px;
+ left:309px;
+}
+#email_title{
+ position:relative;
+ font-size:20px;
+ top:1397px;
+ left:309px;
+}
+#phone_title{
+ position:relative;
+ font-size:20px;
+ top:1597px;
+ left:309px;
+}
+#month_box select{
+ width:95px;
+ height:45px;
+ border-width:2px 2px 2px 2px;
+ font-size:18px;
+}
+#gender_box select{
+ width:310px;
+ height:45px;
+ border-width:2px 2px 2px 2px;
+ font-size:18px;
+}
+#main_title{
+ text-decoration:none;
+ color:black;
+ position:relative;
+ top:75px;
+ left:420px;
+ font-size:40px;
+ font-weight:150px;
+}
+#sign_button{
+ position:relative;
+ top:1750px;
+ left:308px;
+ width:311px;
+ height:40px;
+ border-width:2px;
+ border-color:black;
+ color:black;
+ background-color:white;
+}
+#sign_button:hover{
+ cursor:pointer;
+}

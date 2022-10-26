@@ -20,6 +20,8 @@ public class MemberVO {
 	private String user_birth1;
 	private String user_birth2;
 	private String user_birth3;
+	private String email;
+	private String email_domain;
 	private String user_date;
 	private int user_state;
 	private String del_cont;

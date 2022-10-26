@@ -5,5 +5,21 @@ PUBLIC "-//mybtis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace = "Member"> <!-- 메퍼 네임스페이스 명을 Member로 지정 -->
+ <insert id = "m_in">
+  insert into movie_user (user_no,user_id,user_pw,user_name,user_gender,user_phone1,user_phone2,user_phone3,
+  user_birth1,user_birth2,user_birth3,email,email_domain,user_date,user_state) values(user_no_seq.nextval,#{user_id},#{user_pw},
+  #{user_name},#{user_gender},#{user_phone1},#{user_phone2},#{user_phone3},#{user_birth1},#{user_birth2},#{user_birth3},#{email},
+  #{email_domain},sysdate,1)
+ </insert>
+ 
+ <select id = "login_ck" resultType = "member">
+   select * from movie_user where user_id = #{input_id} and user_state = 1
+ </select>
+ 
+ <select id = "Ser_id" resultType = "member">
+  select user_id from movie_user where user_name = #{user_name} and user_birth1 = #{user_birth1} and user_birth2 = #{user_birth2} and user_birth3 = #{user_birth3}
+ </select>
+ 
+ 
 
 </mapper>
