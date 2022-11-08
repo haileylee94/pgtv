@@ -114,13 +114,24 @@ insert into theater values('2관',12,108);
 create table reservation(
     reservenum number(20) primary key --예매 번호
     ,movietotalnum number(20) --fk 영화 정보 번호
-    --,user_id varchar2(38) -- fk ���� ���̵�
+    ,user_id varchar2(38) --fk 유저 아이디
     ,adult number(20) -- 성인
     ,teen number(20) -- 청소년
     ,seat varchar2(38) -- 좌석
     ,payment number(20) -- 가격
      ,CONSTRAINT reservation_movietotalnum_fk FOREIGN key(movietotalnum) REFERENCES movietotal(movietotalnum)
+     ,total number(20) -- 총 좌석
 );
+
+alter table reservation add  total number(20);
+
+
+alter table reservation add user_id varchar2(38);
+
+ALTER TABLE reservation
+ADD CONSTRAINT fk_reservation_user_id_fk foreign KEY(user_id) references movie_user (user_id);
+
+
 
 select * from reservation;
 
@@ -162,6 +173,9 @@ create table com(
      ,CONSTRAINT com_moviename_fk FOREIGN key(moviename) REFERENCES movie(moviename)
 );
 
+
+
+
 select * from com;
 
 delete com;
@@ -172,6 +186,30 @@ create SEQUENCE com_num_seq
 start with 1
 INCREMENT by 1
 NOCACHE;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

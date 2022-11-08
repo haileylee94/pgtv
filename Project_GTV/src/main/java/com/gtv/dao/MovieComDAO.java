@@ -1,5 +1,9 @@
 package com.gtv.dao;
 
+
+
+
+
 import java.util.List;
 
 import com.gtv.vo.ComVO;
@@ -17,5 +21,6 @@ public interface MovieComDAO {
 	void editCom(ComVO ec);
 
 	void delCom(int com_num);
+
 
 }

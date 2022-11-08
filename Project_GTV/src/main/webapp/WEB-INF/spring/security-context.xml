@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<bean id="UserDetailsService" class="com.gtv.security.UserDetailsService" />
+
+	<bean id="customAccessDenied" class="com.gtv.security.AccessDeniedHandler" />
+	
+	<bean id="customLoginSuccess" class="com.gtv.security.LoginSuccessHandler" />
+	
+	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	
+	<security:http auto-config="true" use-expressions="true"> <!-- 스프링 시큐리티가 http프로토콜(통신규약)에서 알 수 있게 하는 시작 지점 설정 -->
+		
+		<security:intercept-url pattern="/customlogin" access="isAnonymous()" /> <!-- 로그인 이후 로그인페이지 접속차단 -->
+		<security:intercept-url pattern="/sign_up" access="isAnonymous()" /> <!-- 로그인 이후 회원가입 페이지 접속차단 -->
+		<security:intercept-url pattern="/admin/**" access="hasRole('ADMIN')"/> <!-- 어드민 페이지 -->
+		<security:intercept-url pattern="/com_write" access="hasRole('MEMBER')"/>
+		<!-- 해당부분 합칠때 매퍼에 따라 변경해야함 -->
+		
+		<!-- 로그인 설정 -->
+		<security:form-login
+			username-parameter="user_id" password-parameter="user_pw"
+			login-page="/customlogin" authentication-success-handler-ref="customLoginSuccess"
+		/>
+		
+		<!-- 로그아웃 설정 -->
+		<security:logout
+			logout-url="/logout" logout-success-url="/"
+			invalidate-session="true" delete-cookies="true" 
+		/>
+		<!-- 권한이 없어 접근금지시 연결될 페이지 -->
+		<security:access-denied-handler ref="customAccessDenied"/>
+		
+	</security:http>
+	
+	<security:authentication-manager> <!-- 인증 관리자 -->
+		<security:authentication-provider user-service-ref="UserDetailsService">
+			<security:password-encoder ref="bcryptPasswordEncoder"/>
+			<!-- 시큐리티 비번 암호화 => ref속성값 빈아이디 bcryptPasswordEncoder 객체를 호출 -->
+		</security:authentication-provider>
+	</security:authentication-manager>
+</beans>

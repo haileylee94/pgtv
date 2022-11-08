@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybtis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "admin">
+
+	<select id="adm_mem_count" resultType="int">
+		select count(*) from movie_user
+	</select>
+	
+	<select id="adm_mem_list" parameterType="member" resultType="member">
+		select * from (select rowNum rNum, user_no, user_id, user_name, user_gender, 
+			user_phone1, user_phone2, user_phone3, email, email_domain, user_date, user_state, replycnt from
+		(select * from movie_user order by user_no desc))
+		where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
+	</select>
+
+</mapper>

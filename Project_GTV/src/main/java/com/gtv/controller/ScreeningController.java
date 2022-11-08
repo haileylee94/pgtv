@@ -11,6 +11,7 @@ import java.util.Locale;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,13 +31,16 @@ public class ScreeningController {
 	private ScreeningService screeningService;
 
 	@RequestMapping("/screening")
-	public ModelAndView screening(Model li, MovieVO mv, RegiondetailVO rv, MovietotalVO mvo) throws Exception {
+	public ModelAndView screening(Model li, MovieVO mv, RegiondetailVO rv, MovietotalVO mvo, Authentication auth) throws Exception {
+		
+		String id = auth.getName();
+		
 		ModelAndView m = new ModelAndView();
 		List<MovieVO> mlist = screeningService.getList(mv);
 		List<RegiondetailVO> rlist = screeningService.getBranch(rv);
 		List<RegiondetailVO> region = screeningService.getRegion(rv);
 		
-		
+		System.out.println(id);
 		String date = LocalDate.now().toString();
 		String[] nowdate = date.split("-");
 		int year = Integer.parseInt(nowdate[0]);
@@ -103,7 +107,7 @@ public class ScreeningController {
 			dayWeekList.add(dvo);
 		}
 		
-
+		m.addObject("id", id);
 		m.addObject("dayWeekList", dayWeekList);
 		m.addObject("mlist", mlist);
 		m.addObject("rlist", rlist);

@@ -65,6 +65,14 @@ public class ReserveController {
 		rvo2.setSeat(seatVO.getSeat_name());
 		reserveService.insertbooking(rvo2);
 		
+		
+		MovietotalVO mav =  new MovietotalVO ();
+		mav.setMovietotalnum(movietotalnum);
+		
+		
+		
+		
+		
 
 		return "reserve/result";
 	}

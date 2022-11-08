@@ -72,11 +72,17 @@ function mnClk(movienum){
 	$('#movieSel').val(movienum);
 	
 	var params = "movienum=" + movienum;
+	
+	var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
 
 	$.ajax({
 		type:"POST",
 		url:"movieData",
 		data: params,
+		beforeSend : function (xhr){
+            xhr.setRequestHeader(header, token)
+        },
 		success:function(data){
 			
 		},
@@ -102,10 +108,16 @@ function regionClk(theaternum){
 	
 	var params = "theaternum=" + theaternum;
 	
+	var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+	
 	$.ajax({
 		type:"POST",
 		url:"regionDetailList",
 		data: params,
+		beforeSend : function (xhr){
+            xhr.setRequestHeader(header, token)
+        },
 		success:function(data){
 			
 		},
@@ -177,11 +189,17 @@ function movieTotalData(params){
 	var regionSele = $('#regionSel').val();
 	var dateSele = $('#dateSel').val();
 	
+	var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+	
 	$.ajax({
 		type:"POST",
 		url:"movieTotalData",
 		data: {movieSel:movieSele,regionSel:regionSele,dateSel:dateSele},
 		traditional:true,
+		beforeSend : function (xhr){
+            xhr.setRequestHeader(header, token)
+        },
 		success:function(result){
 			console.log(result)
 			$("#movieschedule").html(result);
@@ -203,12 +221,17 @@ function hourClk(movietotalnum){
 	$('#movieTotalSel').val(movietotalnum);
 	
 	var movieTotalSele = $('#movieTotalSel').val();
+	var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
 	
 	$.ajax({
 		type:"POST",
 		url:"movieSelect",
 		data: {movieTotalSel:movieTotalSele},
 		traditional:true,
+		beforeSend : function (xhr){
+            xhr.setRequestHeader(header, token)
+            },
 		success:function(result){
 			$("#moviesele").html(result);
 		},

@@ -12,11 +12,13 @@
 				<div class="quick-reserve-area">
 					
 					<form action="reserve" method="post" name="myForm" id="movieform">
+					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" />
 					<input type="hidden" id="movieSel" name="movieSel" value="" />
 					<input type="hidden" id="regionSel" name="regionSel" value="" />	
 					<input type="hidden" id="dateSel" name="dateSel" value=""/>
 					<input type="hidden" id="dateSel2" name="dateSel2" value=""/>
 					<input type="hidden" id="movieTotalSel" name="movieTotalSel" value=""/>
+					<input type="hidden" id="idSel" name="idSel" value="${id}"/>
 					
 					
 					<div class="movie-choice">

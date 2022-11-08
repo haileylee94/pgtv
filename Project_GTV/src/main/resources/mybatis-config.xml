@@ -9,11 +9,13 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<typeAliases>
 		<typeAlias type="com.gtv.vo.MovieComVO" alias="mvcom"/>
 		<typeAlias type="com.gtv.vo.ComVO" alias="com"/>
-		
+
 		<typeAlias type="com.gtv.vo.MovieVO" alias="movie"/>
        <typeAlias type="com.gtv.vo.RegiondetailVO" alias="region"/>
        <typeAlias type="com.gtv.vo.MovietotalVO" alias="total"/>
        <typeAlias type="com.gtv.vo.Seat_theaterVO" alias="seat"/>
+       <typeAlias alias="member" type="com.gtv.vo.MemberVO"/>
+       <typeAlias alias="authvo" type="com.gtv.vo.AuthVO"/>
 		
 	</typeAliases>
 </configuration>

@@ -7,12 +7,14 @@ create table movie_com(
     edit_com date
 );
 
+
 insert into movie_com (mov_no,mov_name) values('1','공조');
 
 select * from movie_com order by user_id desc;
 
 alter table movie_com add recom number(10);
 alter table movie_com modify (mov_name varchar2(100));
+
 drop table movie_com;
 
 --mov_no_seq 시퀀스 만들기

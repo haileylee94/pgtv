@@ -6,6 +6,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="movcom">
 
+
+
+  
+
 	<!-- 코멘트 저장 -->
 	<insert id="com_in" parameterType="com">
 		insert into com values (1,'공조2',#{cont_com},sysdate,com_num_seq.nextval)
@@ -40,4 +44,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	<delete id="c_del">
   		delete from com where com_num=#{com_num}
   	</delete>
+
 </mapper> 

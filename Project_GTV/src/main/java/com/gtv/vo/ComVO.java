@@ -11,9 +11,10 @@ public class ComVO {
 	private String moviename;
 	private String cont_com;
 	private String upload_com;
+	private String user_id;
 
 	
-	//ÆäÀÌÂ¡
+	//ï¿½ï¿½ï¿½ï¿½Â¡
 	private int startrow;
 	private int endrow;
 

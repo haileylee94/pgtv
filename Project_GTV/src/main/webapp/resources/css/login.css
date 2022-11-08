@@ -1,0 +1,99 @@
+@charset "UTF-8";
+
+input {
+	width: 300px;
+	height: 35px;
+	font-size: 20px;
+}
+
+#id_check {
+	position: absolute;
+	right: 270px;
+	top: 173px;
+	color:black;
+	
+}
+
+#remember-me{
+	color:black;
+    vertical-align: middle;
+    width:15px;
+    height:15px;
+    vertical-align: middle;
+    font-size:13px;
+}
+#remem_label{
+	color:black;
+	font-size:13px;
+}
+#remember-me:hover{
+	cursor:pointer;
+}
+#remem_label:hover{
+	cursor:pointer;
+}
+
+
+#SerN_in a{
+	text-decoration: none;
+	font-size: 13px;
+	position: relative;
+	top: 280px;
+	color: black;
+}
+
+#logo {
+	color: white;
+	font-size: 30px;
+	text-decoration: none;
+	font-weight: bold;
+	position: absolute;
+	right: 48%;
+	top: 120px;
+}
+
+#login_btn {
+	position: relative;
+	top: 210px;
+}
+
+#login_btn button {
+	background-color: black;
+	color: white;
+	font-size: 20px;
+	width: 200px;
+	height: 50px;
+	border-radius: 10px 10px 10px 10px;
+}
+
+#login_btn button:hover {
+	cursor: pointer;
+}
+
+#Login {
+	background-color: #fff;
+	width: 400px;
+	height: 400px;
+	position: relative;
+	left: 50%;
+	top: 50%;
+	margin-left: -200px;
+	margin-top: 62px;
+	text-align: center;
+	border-radius: 10px;
+}
+
+#Login_type {
+	position: absolute;
+	top: 100px;
+}
+
+#user_id {
+	border-radius: 5px 5px 0px 0px;
+	color: black;
+}
+
+#user_pw {
+	border-radius: 0px 0px 5px 5px;
+	color: black;
+}
