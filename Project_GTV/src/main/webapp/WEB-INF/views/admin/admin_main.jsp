@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +21,7 @@
 #admin_menu ul li{
     float:left;
     list-style:none;
-    margin:15px 0px 0px 0px;
+    margin:15px auto 0px;
     padding:0px 65px;
 }
 #main_title{
@@ -55,18 +56,19 @@ a:active{text-decoration:none;}
 				   			<h2>관리자 메인화면</h2>
 				   		</div>
 					    <ul>
-						     <li><a href="admin_main">메인</a></li>
-						     <li><a href="admin_member.jsp">회원관리</a></li>
-						     <li><a href="admin_movie.jsp">영화관리</a></li>
-						     <li><a href="">관리자 관리</a></li>
+					    	<li><a href="/">메인페이지</a></li>
+						    <li><a href="./main">관리자메인</a></li>
+						    <li><a href="./member">회원관리</a></li>
+						    <li><a href="./movie">영화관리</a></li>
 					    </ul>
 				   </div>
 			   
 				   <div id="admin_logout1">
 				   		<div id="admin_logout2">
-				   			${admin_name}님 환영합니다.
-				   			<form method="post" action="admin_logout">
-						     <input type="submit" value="로그아웃" />
+				   			<sec:authentication property="name" />님 환영합니다.<br>
+				   			<a href="#" onclick="document.getElementById('logout').submit();">LogOut</a>
+				   			<form id="logout" method="post" action="/logout">
+				   			 <input type="hidden" name="${_csrf.parameterName}" class="logout" value="${_csrf.token}" />
 					    	</form>
 				   		</div>
 				   </div>

@@ -5,7 +5,7 @@
 .settings/
 .springBeans
 log4j.xml
-mybatis-config.xml
+root-context.xml
 test/
 target/
 Servers/
@@ -63,4 +63,5 @@ replay_pid*
 ##YT ignore##
 
 bin/
+
 

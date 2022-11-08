@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,18 +28,32 @@
 						<a href="/">G.TV</a>
 					</h1>
 					<ul class="nav">
-						<li><a href="/">HONE</a></li>
+						<li><a href="/">HOME</a></li>
 						<li><a href="./html/reserve.jsp">COST</a></li>
 						<li><a href="./sub-main/view_movie.jsp">CATEGORY</a></li>
 						<li><a href="com_write">MOVIE</a></li>
-						<li><a href="#">SNACK BAR</a></li>
-						<li><a href="/customlogin" id="sign_in">SIGN IN</a></li>
+						
+           				<sec:authorize access="isAnonymous()">
+              				<li><a href="/customlogin" id="sign_in">SIGN IN</a></li>
+           				</sec:authorize>
+            			<sec:authorize access="hasRole('MEMBER')">
+            				<li><a href="#">MyPage</a></li>
+               				<li><a href="#" onclick="document.getElementById('logout').submit();">LogOut</a></li>
+           				</sec:authorize>
+           				<sec:authorize access="hasRole('ADMIN')">
+               				<li><a href="/admin/main">AdminPage</a></li>
+               				<li><a href="#" onclick="document.getElementById('logout').submit();">LogOut</a></li>
+           				</sec:authorize>
+           				
 					</ul>
 					<div class="search_area">
 						<form>
 							<input type="search" placeholder="Ready to watch?"> <span>검색</span>
 						</form>
 					</div>
+					<form id="logout" method="post" action="/logout">
+              		<input type="hidden" name="${_csrf.parameterName}" class="logout" value="${_csrf.token}" />
+           			</form>
 					<!-- search_area -->
 				</div>
 				<!-- header -->

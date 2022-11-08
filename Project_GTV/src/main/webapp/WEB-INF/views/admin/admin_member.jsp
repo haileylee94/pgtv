@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,11 +43,28 @@
     border:1px solid black;
     margin:10px 0px 0px 10px;
 }
+
+#adm_mem_table{
+	width: 100%;
+	
+}
+
 a:link{text-decoration:none;}
 a:visited{text-decoration:none;}
 a:hover{text-decoration:underline;}
 a:active{text-decoration:none;}
 </style>
+<script src="/resources/js/jquery.js"></script>
+<script>
+function del_check() {
+	if(confirm("정말로 삭제하시겠습니까?")){
+		return true;
+	}else{
+		return false;
+	}
+}	
+	
+</script>
 </head>
 <body>
 	 <div id="admin_body">	  
@@ -55,24 +74,98 @@ a:active{text-decoration:none;}
 				   			<h2>관리자 회원관리</h2>
 				   		</div>
 					    <ul>
-						     <li><a href="admin_main.jsp">메인</a></li>
-						     <li><a href="admin_member.jsp">회원관리</a></li>
-						     <li><a href="admin_movie.jsp">영화관리</a></li>
-						     <li><a href="#">혹시몰라</a></li>
+						     <li><a href="/">메인페이지</a></li>
+						   	 <li><a href="./main">관리자메인</a></li>
+						     <li><a href="./member">회원관리</a></li>
+						     <li><a href="./movie">영화관리</a></li>
 					    </ul>
 				   </div>
 			   
 				   <div id="admin_logout1">
 				   		<div id="admin_logout2">
-				   			<form method="post" action="admin_logout">
-						     <input type="submit" value="로그아웃" />
+				   			<sec:authentication property="name" />님 환영합니다.<br>
+				   			<a href="#" onclick="document.getElementById('logout').submit();">LogOut</a>
+				   			<form id="logout" method="post" action="/logout">
+				   			 <input type="hidden" name="${_csrf.parameterName}" class="logout" value="${_csrf.token}" />
 					    	</form>
 				   		</div>
 				   </div>
 		  	</div>
 		  
-			<div id="admin_cont" style="background-image: url('./resources/images/admin/bono.jpg');
-				background-size: 900px;	opacity: 1;">
+			<div id="admin_cont">
+				<table border="1" id="adm_mem_table">					
+					<tr>
+						<td align="right"><strong>총 사용자 : ${totalCount }</strong>명</td>
+					</tr>
+					
+					<tr>
+						<th>.NO</th> <th>ID</th> <th>유저명</th> <th>성별</th> <th>연락처</th> <th>이메일</th> <th>가입일</th>
+					</tr>
+					
+					<c:if test="${!empty list }">
+						<c:forEach var="mem" items="${list }">
+							<c:if test="${mem.user_state == 1 }">
+								<tr>
+									<th>${mem.user_no }</th>
+									<td style="padding-left: 14px; font-weight: bolder;">
+									<a href="#?user_id=${mem.user_id }&page=${page }">${mem.user_id }</a></td>
+									<th>${mem.user_name }</th>
+									<th>
+										<c:if test="${mem.user_gender == 1}">남성</c:if>
+										<c:if test="${mem.user_gender == 2}">여성</c:if>
+									</th>
+									<th>${mem.user_phone1 }-${mem.user_phone2 }-${mem.user_phone3 }</th>
+									<th>${mem.email }@${mem.email_domain }</th>
+									<th>${mem.user_date }</th>
+									<th>
+									<form action="/admin/delete_ok?user_no=${mem.user_no }" onsubmit="return del_check();" method="post">
+										<input type="hidden" name="${_csrf.parameterName}" class="logout" value="${_csrf.token}" />
+										<input type="submit" value="유저 탈퇴" />
+									</form>
+									</th>
+								</tr>
+							</c:if>
+						</c:forEach>
+					</c:if>
+					
+					<c:if test="${empty list }">	
+						<tr>
+						 <th colspan="8">사용자가 없습니다.</th>
+						</tr>
+					</c:if>
+					
+					<%-- 페이징 쪽나누기 부분 --%>
+					<tr>
+						<th colspan="8">
+							<c:if test="${page <= 1}">
+								[이전]&nbsp;
+							</c:if>
+							
+							<c:if test="${page > 1 }">
+								<a href="/admin/member?page=${page -1}">[이전]</a>&nbsp;
+							</c:if>
+							
+							<%-- 헌재 쪽번호 출력 --%>
+							<c:forEach var="a" begin="${startpage}" end="${endpage }" step="1">
+								<c:if test="${a == page }"> <%-- 현재 쪽번호가 선택된 경우 --%>
+									<${a }>
+								</c:if>
+								
+								<c:if test="${a != page }"> <%-- 현재 쪽번호가 선택되지 않은경우 --%>
+									<a href="/admin/member?page=${a }">[${a }]</a>&nbsp;
+								</c:if>
+							</c:forEach>
+							
+							<c:if test="${page >= maxpage }">
+							다음
+							</c:if>
+							
+							<c:if test="${page < maxpage }">
+								<a href="/admin/member?page=${page+1 }">[다음]</a>
+							</c:if>
+						</th>
+					</tr>
+				</table>
 			</div>
 	 </div>
 </body>

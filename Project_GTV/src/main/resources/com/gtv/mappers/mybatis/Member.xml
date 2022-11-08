@@ -29,7 +29,7 @@ PUBLIC "-//mybtis.org//DTD Mapper 3.0//EN"
 	<!-- java.lang 또는 parameterType은 생략 가능하다. -->
 		select mem.user_id, user_no, user_pw, user_name, user_state, user_date, authority
 			from movie_user mem LEFT OUTER JOIN gtv_authorities auth on mem.user_id = auth.user_id
-			where mem.user_id = #{id}
+			where mem.user_id = #{id} and mem.user_state = 1
 	</select>
 	
 	<insert id = "m_in">

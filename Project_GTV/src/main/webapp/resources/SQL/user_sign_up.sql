@@ -46,16 +46,35 @@ select * from movie_user;
 alter table movie_user add email varchar2(30) not null;
 alter table movie_user add email_domain varchar2(30) not null;
 
-delete from movie_user where user_id = 'member';
-delete from gtv_authorities where user_id = 'member';
+delete from movie_user where user_id = 'member4';
+delete from gtv_authorities where user_id = 'member4';
 
 drop table movie_user;
+drop sequence user_no_seq;
 drop table gtv_authorities;
 
-insert into gtv_authorities values ('member', 'MEMBER');
+insert into gtv_authorities values ('member', 'ROLE_MEMBER');
 
 commit;
 
+update gtv_authorities set authority = 'ROLE_ADMIN' where user_id = 'admin';
+
+select * from (select rowNum rNum, user_no, user_id, user_name, user_gender, 
+        user_phone1, user_phone2, user_phone3, email, email_domain, user_date, user_state from (select * from movie_user order by user_no desc))
+		where rNum >= 1 and rNum <= 5;
+        
+select parameter value from nls_database_parameters WHERE parameter LIKE '%CHAR%';
+
+update movie_user set user_state = 0 where user_no = 10;
+
 select mem.user_id, user_no, user_pw, user_name, user_state, user_date, authority
 			from movie_user mem LEFT OUTER JOIN gtv_authorities auth on mem.user_id = auth.user_id
-			where mem.user_id = 'member'
+			where mem.user_id = 'member' and mem.user_state = 1;
+            
+            
+CREATE TABLE persistent_logins (
+	username varchar(64) NOT NULL,
+	series varchar(64) PRIMARY KEY,
+	token varchar(64) NOT NULL,
+	last_used timestamp NOT NULL
+ );
