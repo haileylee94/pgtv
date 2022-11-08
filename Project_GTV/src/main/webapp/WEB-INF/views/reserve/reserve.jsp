@@ -43,34 +43,6 @@
 									</div>
 								</div>
 							</div>
-							<!-- 
-							<div class="cell">
-								<p class="txt">성인</p>
-								<div class="count">
-									<button type="button" class="down" onclick='count("minus")'
-										title="성인 좌석 선택 감소">-</button>
-									<div class="number">
-										<button type="button" class="now" id="now"
-											title="성인 현재 좌석 선택 수">0</button>
-									</div>
-									<button type="button" class="up" onclick='count("plus")'
-										title="성인 좌석 선택 증가">+</button>
-								</div>
-							</div>
-							<div class="cell">
-								<p class="txt">청소년</p>
-								<div class="count">
-									<button type="button" class="down" onclick='count2("minus")'
-										title="청소년 좌석 선택 감소">-</button>
-									<div class="number">
-										<button type="button" class="now" id="now2"
-											title="청소년 현재 좌석 선택 수">0</button>
-									</div>
-									<button type="button" class="up" onclick='count2("plus")'
-										title="청소년 좌석 선택 증가">+</button>
-								</div>
-							</div>
-							 -->
 						</div>
 						<div class="seat-layout">
 							<div class="scroll">
@@ -198,7 +170,6 @@
 			</form>
 		</div>
 	</div>
-
 </div>
 <script type="text/javascript">
 	var list = [];
