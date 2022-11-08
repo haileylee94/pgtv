@@ -18,58 +18,58 @@ import com.gtv.vo.MemberVO;
 @RequestMapping("/admin")
 public class AdminController {
 
-	@Autowired
-	private AdminService adminService;
-	
-	@RequestMapping("/main")
-	public ModelAndView main() {
-		
-		ModelAndView m = new ModelAndView();
-		m.setViewName("admin/admin_main");
-		return m;
-	}
-	
-	@RequestMapping("/member")
-	public String member(Model m, MemberVO mem, HttpServletRequest request) {
-		
-		int page = 1;
-		int limit = 5; // í•œ í˜ì´ì§€ì—ì„œ ë³´ì—¬ì§€ëŠ” ëª©ë¡ ê°œìˆ˜
-		if(request.getParameter("page") != null) {
-			page = Integer.parseInt(request.getParameter("page"));
-		}
-		mem.setStartrow((page-1)*5 + 1); // ì‹œì‘ í–‰ ë²ˆí˜¸
-		mem.setEndrow(mem.getStartrow() + limit - 1); // ëí–‰ ë²ˆí˜¸
-		// ê²°êµ­ í•œ í˜ì´ì§€ì—ì„œ ê²€ìƒ‰ë˜ëŠ” ëª©ë¡ ê°œìˆ˜ê°€ 5ê°œë¡œ ì œí•œëœë‹¤.
-		
-		int totalCount = this.adminService.getRowCount(); //ì´ë ˆì½”ë“œ ê°œìˆ˜
-		List<MemberVO> memlist = this.adminService.getBoardList(mem); // ê²Œì‹œíŒ ëª©ë¡
-		
-		// í˜ì´ì§• ì¦‰ ìª½ë‚˜ëˆ„ê¸° ê´€ë ¨ ì—°ì‚°
-		int maxpage = (int)((double)totalCount/limit + 0.95); // ì´ í˜ì´ì§€ ìˆ˜
-		int startpage = (((int)((double)page/10 + 0.9))-1)*10 + 1; // ì‹œì‘ í˜ì´ì§€
-		int endpage = maxpage; // í˜„ì¬ í˜ì´ì§€ì— ë³´ì—¬ì§ˆ ë§ˆì§€ë§‰ í˜ì´ì§€
-		
-		if(endpage > startpage + 10 - 1) endpage = startpage + 10 - 1;
-		
-		m.addAttribute("list", memlist); // listí‚¤ ì´ë¦„ì— ëª©ë¡ ì €ì¥
-		m.addAttribute("totalCount", totalCount);
-		m.addAttribute("startpage", startpage);
-		m.addAttribute("endpage", endpage);
-		m.addAttribute("maxpage", maxpage);
-		m.addAttribute("page", page);
-		
-		return "admin/admin_member";
-	}
-	
-	@RequestMapping("/movie")
-	public ModelAndView movie(Authentication auth) {
-		
-		String name = auth.getName();
-		System.out.println(auth.getName());
-		
-		ModelAndView m = new ModelAndView();
-		m.addObject("id", name);
-		m.setViewName("admin/admin_movie");
-		return m;
-	}
+   @Autowired
+   private AdminService adminService;
+   
+   @RequestMapping("/main")
+   public ModelAndView main() {
+      
+      ModelAndView m = new ModelAndView();
+      m.setViewName("admin/admin_main");
+      return m;
+   }
+   
+   @RequestMapping("/member")
+   public String member(Model m, MemberVO mem, HttpServletRequest request) {
+      
+      int page = 1;
+      int limit = 5; // ÇÑ ÆäÀÌÁö¿¡¼­ º¸¿©Áö´Â ¸ñ·Ï °³¼ö
+      if(request.getParameter("page") != null) {
+         page = Integer.parseInt(request.getParameter("page"));
+      }
+      mem.setStartrow((page-1)*5 + 1); // ½ÃÀÛ Çà ¹øÈ£
+      mem.setEndrow(mem.getStartrow() + limit - 1); // ³¡Çà ¹øÈ£
+      // °á±¹ ÇÑ ÆäÀÌÁö¿¡¼­ °Ë»öµÇ´Â ¸ñ·Ï °³¼ö°¡ 5°³·Î Á¦ÇÑµÈ´Ù.
+      
+      int totalCount = this.adminService.getRowCount(); //ÃÑ·¹ÄÚµå °³¼ö
+      List<MemberVO> memlist = this.adminService.getBoardList(mem); // °Ô½ÃÆÇ ¸ñ·Ï
+      
+      // ÆäÀÌÂ¡ Áï ÂÊ³ª´©±â °ü·Ã ¿¬»ê
+      int maxpage = (int)((double)totalCount/limit + 0.95); // ÃÑ ÆäÀÌÁö ¼ö
+      int startpage = (((int)((double)page/10 + 0.9))-1)*10 + 1; // ½ÃÀÛ ÆäÀÌÁö
+      int endpage = maxpage; // ÇöÀç ÆäÀÌÁö¿¡ º¸¿©Áú ¸¶Áö¸· ÆäÀÌÁö
+      
+      if(endpage > startpage + 10 - 1) endpage = startpage + 10 - 1;
+      
+      m.addAttribute("list", memlist); // listÅ° ÀÌ¸§¿¡ ¸ñ·Ï ÀúÀå
+      m.addAttribute("totalCount", totalCount);
+      m.addAttribute("startpage", startpage);
+      m.addAttribute("endpage", endpage);
+      m.addAttribute("maxpage", maxpage);
+      m.addAttribute("page", page);
+      
+      return "admin/admin_member";
+   }
+   
+   @RequestMapping("/movie")
+   public ModelAndView movie(Authentication auth) {
+      
+      String name = auth.getName();
+      System.out.println(auth.getName());
+      
+      ModelAndView m = new ModelAndView();
+      m.addObject("id", name);
+      m.setViewName("admin/admin_movie");
+      return m;
+   }
 }

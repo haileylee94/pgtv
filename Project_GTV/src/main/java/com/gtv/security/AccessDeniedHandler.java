@@ -16,7 +16,6 @@ public class AccessDeniedHandler implements org.springframework.security.web.acc
 	public void handle(HttpServletRequest request, HttpServletResponse response,
 			AccessDeniedException accessDeniedException) throws IOException, ServletException {
 		
-		System.out.println("AccessDeniedHandlerë°œë™");
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
@@ -24,7 +23,7 @@ public class AccessDeniedHandler implements org.springframework.security.web.acc
 		session.invalidate();
 		
 		out.print("<script>");
-		out.print("alert('ë¡œê·¸ì¸ì´ í•„ìš”í•©ë‹ˆë‹¤.');");
+		out.print("alert('·Î±×ÀÎÀÌ ÇÊ¿äÇÕ´Ï´Ù.');");
 		out.print("location='/customlogin';");
 		out.print("</script>");
 

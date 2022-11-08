@@ -5,7 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,185 +21,185 @@ import com.gtv.vo.MovieVO;
 @Controller
 @RequestMapping("/*")
 public class MovieComController {
-   
-   @Autowired
-   private MovieComService moviecomService;
-   
-   //  È­    Æ®
-   @GetMapping("/movie")
-   public ModelAndView movie(HttpServletRequest request) {
-      
-      ModelAndView m = new ModelAndView();
-      m.setViewName("movie/movie");
-      return m;
-   }
-   
-   
-//   //  È­       
-//   @GetMapping("/movie_sub")
-//   public ModelAndView movie_sub(HttpServletRequest request) {
-//      
-//      ModelAndView m = new ModelAndView();
-//      m.setViewName("movie/movie_sub");
-//      return m;
-//   }
-   
-   //  È­         +         Ú¸ Æ®     
-   @GetMapping("/movie_sub")
-   public ModelAndView com_write(HttpServletRequest request, MovieVO movieVo) {
-      int page=1;
-      if(request.getParameter("page") != null) {
-         page=Integer.parseInt(request.getParameter("page"));
-      }
-      ModelAndView mv = new ModelAndView();
-      movieVo.setMovienum(1);
-      movieVo.setMoviename("    2");
-      mv.setViewName("movie/movie_sub");// ä¸®             .               Î´  
-      // /WEB-INF/views/movie/com_write.jsp
-      mv.addObject("page", page);
-      return mv;
-   }//movie_sub()
-   
-   // Ú¸ Æ®     
-   @PostMapping("/com_write_ok")
-   public String com_write_ok(ComVO c,RedirectAttributes rttr, HttpServletRequest request, Authentication auth) throws Exception{
-      
-	  String id = auth.getName();
-	  
-      String movienum=request.getParameter("movienum");
-      String moviename=request.getParameter("moviename");
-      System.out.println("  È­   È£: "+movienum + "  È­  Ì¸ : "+moviename);
-      moviecomService.insertCom(c);
-      rttr.addFlashAttribute("msg", "SUCCESS");
-      //rttr.addFlashAttribute               url Ú¿        Ê´Â´ .   È¸   Ì¶                      Í°   Ò¸  Ñ´ .
-      //     2   Ì»        ,      Ê¹   Ò¸  Ñ´ .            Ì¿  Ï¿   Ñ¹           Ø¾  Ñ´ .
-      return "redirect:/com_list";
-      
-   }//com_write_ok()
-   
-   // Ú¸ Æ®     Æ®
-   @GetMapping("/com_list")
-   public String com_list(Model m,HttpServletRequest request,ComVO c) {
-      int page=1;
-      int limit=5; //                      Ï°   
-      if(request.getParameter("page") != null) {
-         page=Integer.parseInt(request.getParameter("page"));
-      }
-      
-      c.setStartrow((page-1)*5+1);
-      c.setEndrow(c.getStartrow()+limit-1);
-      
-      int totalCount=this.moviecomService.getRowCount();//    Ú¸ Æ®     
-      //System.out.println(" Ñ°   : "+ totalCount);
-      List<ComVO> clist=this.moviecomService.getComList(c); // Ú¸ Æ®    
-      //System.out.println(" Ú¸ Æ®    : "+clist);
-      
-      /*    Â¡          */
-      int maxpage=(int)((double)totalCount/limit+0.95);//            
-      int startpage=(((int)((double)page/10+0.9))-1)*10+1;//          
-      int endpage=maxpage;//                                 
-      
-      if(endpage > startpage+10-1) endpage=startpage+10-1;
-      
-      m.addAttribute("clist", clist);//list Å°  Ì¸            
-      m.addAttribute("totalCount", totalCount);
-      m.addAttribute("startpage", startpage);
-      m.addAttribute("endpage", endpage);
-      m.addAttribute("maxpage", maxpage);
-      m.addAttribute("page", page);
-      //m.addAttribute("com_num",com_num);
-      
-      return "movie/com_list";
-         
-   }
-   
-   // Ú¸ Æ®       
-   @GetMapping("/com_edit")
-   public String com_editPopUp(Model m, int com_num, int page,HttpServletRequest request,ComVO c) {
-      c=moviecomService.getCont(com_num);
-      
-      //com_num =Integer.parseInt(request.getParameter("com_num"));
-      System.out.println("  È£       : " + com_num);
-      System.out.println("==========================>");
-      
-      //m.addAttribute("c", c);
-      //m.addAttribute("com_num", com_num);
-      //m.addAttribute("page", page);
-      
-      // ß° 
-      page=1;
-      int limit=5; //                      Ï°   
-      if(request.getParameter("page") != null) {
-         page=Integer.parseInt(request.getParameter("page"));
-      }
-      
-      c.setStartrow((page-1)*5+1);
-      c.setEndrow(c.getStartrow()+limit-1);
-      
-      int totalCount=this.moviecomService.getRowCount();//    Ú¸ Æ®     
-      //System.out.println(" Ñ°   : "+ totalCount);
-      List<ComVO> clist=this.moviecomService.getComList(c); // Ú¸ Æ®    
-      //System.out.println(" Ú¸ Æ®    : "+clist);
-      
-      /*    Â¡          */
-      int maxpage=(int)((double)totalCount/limit+0.95);//            
-      int startpage=(((int)((double)page/10+0.9))-1)*10+1;//          
-      int endpage=maxpage;//                                 
-      
-      if(endpage > startpage+10-1) endpage=startpage+10-1;
-      
-      m.addAttribute("clist", clist);//list Å°  Ì¸            
-      m.addAttribute("totalCount", totalCount);
-      m.addAttribute("startpage", startpage);
-      m.addAttribute("endpage", endpage);
-      m.addAttribute("maxpage", maxpage);
-      m.addAttribute("page", page);
-      m.addAttribute("com_num", com_num);
-      
-      return "movie/com_list2";
-   }
-   
-   //     Ï· 
-   @PostMapping("/com_edit_ok")
-   public ModelAndView com_edit_ok(Model m,ComVO ec,int com_num, int page, HttpServletRequest request,RedirectAttributes rttr) {
-      
-      moviecomService.editCom(ec);
-      
-//      String cont_com=request.getParameter("cont_com");
-//      System.out.println(" Ú¸ Æ®: " +cont_com);
-      //com_num =Integer.parseInt(request.getParameter("com_num"));
-      System.out.println("  È£: " + ec.getCom_num());
-      System.out.println("      : " + page);
-      System.out.println(ec.getCont_com());
-      
-      
-      String movienum=request.getParameter("movienum");
-      String moviename=request.getParameter("moviename");
-      System.out.println("=================>");
-      System.out.println("  È­   È£: "+movienum + "  È­  Ì¸ : "+moviename);
-      
-      ModelAndView cm=new ModelAndView();
-      cm.setViewName("redirect:/com_list");
-      cm.addObject("page", page);
-      cm.addObject("com_num",com_num);
-      return cm;
-   
-//      rttr.addFlashAttribute("msg", "SUCCESS");
-//      return new ModelAndView("movie/com_list?page="+page);
-      
-   }
-   
-   //    
-   @RequestMapping("com_del")
-   public ModelAndView com_del(int com_num,int page,RedirectAttributes rttr,HttpServletRequest request) {
-      this.moviecomService.delCom(com_num);
-      
-      com_num =Integer.parseInt(request.getParameter("com_num"));
-      System.out.println("  È£: " + com_num);
-      
-      rttr.addFlashAttribute("msg", "SUCCESS");
-      return new ModelAndView("redirect:/com_list?page="+page);
-   }
-   
+	
+	@Autowired
+	private MovieComService moviecomService;
+	
+	//¿µÈ­¸®½ºÆ®
+	@GetMapping("/movie")
+	public ModelAndView movie(HttpServletRequest request) {
+		
+		ModelAndView m = new ModelAndView();
+		m.setViewName("movie/movie");
+		return m;
+	}
+	
+	
+//	//¿µÈ­ »ó¼¼Á¤º¸
+//	@GetMapping("/movie_sub")
+//	public ModelAndView movie_sub(HttpServletRequest request) {
+//		
+//		ModelAndView m = new ModelAndView();
+//		m.setViewName("movie/movie_sub");
+//		return m;
+//	}
+	
+	//¿µÈ­ »ó¼¼ Á¤º¸ + °ü¶÷°´ ÄÚ¸àÆ® ¾²±â
+	@GetMapping("/movie_sub")
+	public ModelAndView com_write(HttpServletRequest request, MovieVO movieVo) {
+		int page=1;
+		if(request.getParameter("page") != null) {
+			page=Integer.parseInt(request.getParameter("page"));
+		}
+		ModelAndView mv = new ModelAndView();
+		movieVo.setMovienum(1);
+		movieVo.setMoviename("°øÁ¶2");
+		mv.setViewName("movie/movie_sub");//ºä¸®Á¹ºê °æ·Î ¼³Á¤. Áï ºäÆäÀÌÁö °æ·Î´Â 
+		// /WEB-INF/views/movie/com_write.jsp
+		mv.addObject("page", page);
+		return mv;
+	}//movie_sub()
+	
+	//ÄÚ¸àÆ® ÀúÀå
+	@PostMapping("/com_write_ok")
+	public String com_write_ok(ComVO c,RedirectAttributes rttr, HttpServletRequest request) throws Exception{
+		
+		String movienum=request.getParameter("movienum");
+		String moviename=request.getParameter("moviename");
+		System.out.println("¿µÈ­ ¹øÈ£: "+movienum + "¿µÈ­ ÀÌ¸§: "+moviename);
+		moviecomService.insertCom(c);
+		rttr.addFlashAttribute("msg", "SUCCESS");
+		//rttr.addFlashAttribute·Î Àü´ÞÇÑ °ªÀº urlµÚ¿¡ ºÙÁö ¾Ê´Â´Ù. ÀÏÈ¸¼ºÀÌ¶ó ¸®ÇÁ·¹½ÃÇÒ °æ¿ì µ¥ÀÌÅÍ°¡ ¼Ò¸êÇÑ´Ù.
+		//¶ÇÇÑ 2°³ÀÌ»ó ¾µ °æ¿ì, µ¥ÀÌÅÍ´Â ¼Ò¸êÇÑ´Ù. µû¶ó¼­ ¸ÊÀ» ÀÌ¿ëÇÏ¿© ÇÑ¹ø¿¡ °ªÀü´ÞÇØ¾ßÇÑ´Ù.
+		return "redirect:/com_list";
+		
+	}//com_write_ok()
+	
+	//ÄÚ¸àÆ® ¸®½ºÆ®
+	@GetMapping("/com_list")
+	public String com_list(Model m,HttpServletRequest request,ComVO c) {
+		int page=1;
+		int limit=5; //ÇÑÆäÀÌÁö¿¡ º¸¿©Áö´Â ¸ñ·Ï°³¼ö
+		if(request.getParameter("page") != null) {
+			page=Integer.parseInt(request.getParameter("page"));
+		}
+		
+		c.setStartrow((page-1)*5+1);
+		c.setEndrow(c.getStartrow()+limit-1);
+		
+		int totalCount=this.moviecomService.getRowCount();//ÃÑ ÄÚ¸àÆ® °³¼ö
+		//System.out.println("ÃÑ°³¼ö: "+ totalCount);
+		List<ComVO> clist=this.moviecomService.getComList(c); //ÄÚ¸àÆ® ¸ñ·Ï
+		//System.out.println("ÄÚ¸àÆ® ¸ñ·Ï: "+clist);
+		
+		/*ÆäÀÌÂ¡ °ü·Ã ¿¬»ê*/
+		int maxpage=(int)((double)totalCount/limit+0.95);//ÃÑ ÆäÀÌÁö ¼ö
+		int startpage=(((int)((double)page/10+0.9))-1)*10+1;//½ÃÀÛÆäÀÌÁö
+		int endpage=maxpage;//ÇöÀçÆäÀÌÁö¿¡ º¸¿©Áú ¸¶Áö¸· ÆäÀÌÁö
+		
+		if(endpage > startpage+10-1) endpage=startpage+10-1;
+		
+		m.addAttribute("clist", clist);//list Å° ÀÌ¸§¿¡ ¸ñ·Ï ÀúÀå
+		m.addAttribute("totalCount", totalCount);
+		m.addAttribute("startpage", startpage);
+		m.addAttribute("endpage", endpage);
+		m.addAttribute("maxpage", maxpage);
+		m.addAttribute("page", page);
+		//m.addAttribute("com_num",com_num);
+		
+		return "movie/com_list";
+			
+	}
+	
+	//ÄÚ¸àÆ® ¼öÁ¤Æû
+	@GetMapping("/com_edit")
+	public String com_editPopUp(Model m, int com_num, int page,HttpServletRequest request,ComVO c) {
+		c=moviecomService.getCont(com_num);
+		
+		//com_num =Integer.parseInt(request.getParameter("com_num"));
+		System.out.println("¹øÈ£ ¼öÁ¤Æû: " + com_num);
+		System.out.println("¼öÁ¤ÇÒ ³»¿ë: " + c.getCont_com());
+		System.out.println("==========================>");
+		
+		//m.addAttribute("c", c);
+		//m.addAttribute("com_num", com_num);
+		//m.addAttribute("page", page);
+		
+		//Ãß°¡
+		page=1;
+		int limit=5; //ÇÑÆäÀÌÁö¿¡ º¸¿©Áö´Â ¸ñ·Ï°³¼ö
+		if(request.getParameter("page") != null) {
+			page=Integer.parseInt(request.getParameter("page"));
+		}
+		
+		c.setStartrow((page-1)*5+1);
+		c.setEndrow(c.getStartrow()+limit-1);
+		
+		int totalCount=this.moviecomService.getRowCount();//ÃÑ ÄÚ¸àÆ® °³¼ö
+		//System.out.println("ÃÑ°³¼ö: "+ totalCount);
+		List<ComVO> clist=this.moviecomService.getComList(c); //ÄÚ¸àÆ® ¸ñ·Ï
+		//System.out.println("ÄÚ¸àÆ® ¸ñ·Ï: "+clist);
+		
+		/*ÆäÀÌÂ¡ °ü·Ã ¿¬»ê*/
+		int maxpage=(int)((double)totalCount/limit+0.95);//ÃÑ ÆäÀÌÁö ¼ö
+		int startpage=(((int)((double)page/10+0.9))-1)*10+1;//½ÃÀÛÆäÀÌÁö
+		int endpage=maxpage;//ÇöÀçÆäÀÌÁö¿¡ º¸¿©Áú ¸¶Áö¸· ÆäÀÌÁö
+		
+		if(endpage > startpage+10-1) endpage=startpage+10-1;
+		
+		m.addAttribute("clist", clist);//list Å° ÀÌ¸§¿¡ ¸ñ·Ï ÀúÀå
+		m.addAttribute("totalCount", totalCount);
+		m.addAttribute("startpage", startpage);
+		m.addAttribute("endpage", endpage);
+		m.addAttribute("maxpage", maxpage);
+		m.addAttribute("page", page);
+		m.addAttribute("com_num", com_num);
+		m.addAttribute("cont_com", c.getCont_com());
+		
+		return "movie/com_list2";
+	}
+	
+	//¼öÁ¤¿Ï·á
+	@PostMapping("/com_edit_ok")
+	public ModelAndView com_edit_ok(Model m,ComVO ec,int com_num, int page, HttpServletRequest request,RedirectAttributes rttr) {
+		
+		moviecomService.editCom(ec);
+		
+//		String cont_com=request.getParameter("cont_com");
+//		System.out.println("ÄÚ¸àÆ®: " +cont_com);
+		//com_num =Integer.parseInt(request.getParameter("com_num"));
+		System.out.println("¹øÈ£: " + ec.getCom_num());
+		System.out.println("ÆäÀÌÁö: " + page);
+		System.out.println(ec.getCont_com());
+		
+		
+		String movienum=request.getParameter("movienum");
+		String moviename=request.getParameter("moviename");
+		System.out.println("=================>");
+		System.out.println("¿µÈ­ ¹øÈ£: "+movienum + "¿µÈ­ ÀÌ¸§: "+moviename);
+		
+		ModelAndView cm=new ModelAndView();
+		cm.setViewName("redirect:/com_list");
+		cm.addObject("page", page);
+		cm.addObject("com_num",com_num);
+		return cm;
+	
+//		rttr.addFlashAttribute("msg", "SUCCESS");
+//		return new ModelAndView("movie/com_list?page="+page);
+		
+	}
+	
+	//»èÁ¦
+	@RequestMapping("com_del")
+	public ModelAndView com_del(int com_num,int page,RedirectAttributes rttr,HttpServletRequest request) {
+		this.moviecomService.delCom(com_num);
+		
+		com_num =Integer.parseInt(request.getParameter("com_num"));
+		System.out.println("¹øÈ£: " + com_num);
+		
+		rttr.addFlashAttribute("msg", "SUCCESS");
+		return new ModelAndView("redirect:/com_list?page="+page);
+	}
+	
 
 }
