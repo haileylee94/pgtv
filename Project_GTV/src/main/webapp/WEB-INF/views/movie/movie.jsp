@@ -71,7 +71,7 @@
       <div class="top5_programes">
          <div class="card-box">
             <div class="img-gradient"></div>
-            <img src="./resources/images/main_movie/hansan.jpg" alt="한산">
+            <img src="./resources/images/main_movie/gongjo_sub.png" alt="공조2">
             <div class="text-wrap">
                <div id="booking"><a href="screening">예매하기</a></div>
                <div class="btm-info"><a href="movie_sub?공조2">상세정보</a></div>

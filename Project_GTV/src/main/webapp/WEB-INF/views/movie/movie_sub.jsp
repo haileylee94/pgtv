@@ -65,7 +65,7 @@
    <div class="reviews">
 
       <div class="review-tit">
-         평점 및 관람평(4,032)<a href="#open_ly" class="write_mycom com_open">내
+         평점 및 관람평(${totalCount})<a href="#open_ly" class="write_mycom com_open">내
             평점 등록</a><a href="com_list" class="see_coms">후기 보기</a>
       </div>
       <hr>

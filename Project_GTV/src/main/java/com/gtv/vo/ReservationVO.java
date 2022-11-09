@@ -14,5 +14,6 @@ public class ReservationVO {
 	private int payment; // 가격 
 
 	private String user_id; //유저 아이디
+	private int total; //총 좌석
 
 }

@@ -33,6 +33,9 @@ public class ScreeningController {
 	@RequestMapping("/screening")
 	public ModelAndView screening(Model li, MovieVO mv, RegiondetailVO rv, MovietotalVO mvo, Authentication auth) throws Exception {
 		
+		
+
+		
 		String id = auth.getName();
 		
 		ModelAndView m = new ModelAndView();

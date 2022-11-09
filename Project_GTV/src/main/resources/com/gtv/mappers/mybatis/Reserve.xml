@@ -23,7 +23,7 @@ PUBLIC "-//mybtis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<insert id="insertbooking">
-		insert into reservation values(reservenum_seq.nextval,#{movietotalnum},#{adult},#{teen},#{seat},#{payment})
+		insert into reservation values(reservenum_seq.nextval,#{movietotalnum},#{adult},#{teen},#{seat},#{payment},#{user_id},#{total})
 	</insert>
 	
 	

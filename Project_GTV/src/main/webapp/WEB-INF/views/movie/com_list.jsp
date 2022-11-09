@@ -46,7 +46,7 @@
 </div>
 <!-- detail-top-wrap -->
 <div class="reviews">
-   <div class="review-tit">평점 및 관람평(4,032)</div>
+   <div class="review-tit">평점 및 관람평(${totalCount})</div>
    <hr>
    <div class="com_write">
       <form method="post" action="com_write_ok"

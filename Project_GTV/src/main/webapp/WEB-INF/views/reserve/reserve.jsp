@@ -12,6 +12,9 @@
 					id="adultCount" name="adultCount"> <input type="hidden"
 					id="kidCount" name="kidCount"> <input type="hidden"
 					id="seat_name" name="seat_name">
+					<input type="hidden" id="count" name="count">
+					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" />
+					<input type="hidden" id="idSel" name="idSel" value="${id}">
 				<div class="seat-section">
 					<div class="tit-util">
 						<h3 class="tit small">관람인원선택</h3>

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,9 +23,10 @@ public class ReserveController {
 	private ReserveService reserveService;
 	
 	@RequestMapping("/reserve")
-	public ModelAndView reserve(HttpServletRequest request) {
-		
+	public ModelAndView reserve(HttpServletRequest request,Authentication auth) {
 		ModelAndView mav = new ModelAndView();
+		String id = auth.getName();
+		
 		int movieTotalSel = Integer.parseInt(request.getParameter("movieTotalSel"));
 		MovietotalVO mtvo = new MovietotalVO();
 		mtvo.setMovietotalnum(movieTotalSel);
@@ -34,7 +36,7 @@ public class ReserveController {
 		List<Seat_theaterVO> stv = reserveService.getSeat(mtvo);
 		
 		
-		
+		mav.addObject("id", id);
 		mav.addObject("seat", stv);
 		mav.addObject("movietotal", movietotal);
 		mav.setViewName("reserve/reserve");
@@ -49,6 +51,10 @@ public class ReserveController {
 		int adult = Integer.parseInt(request.getParameter("adultCount")) ;
 		int kid = Integer.parseInt(request.getParameter("kidCount"));
 		int price = Integer.parseInt(request.getParameter("price"));
+		String id = request.getParameter("idSel");
+		int total = Integer.parseInt(request.getParameter("count"));
+		
+		System.out.println(total);
 		
 		ReservationVO rvo1 = new ReservationVO();
 		for (int i = 0; i < seat_names.length; i++) {
@@ -63,6 +69,8 @@ public class ReserveController {
 		rvo2.setTeen(kid);
 		rvo2.setPayment(price);
 		rvo2.setSeat(seatVO.getSeat_name());
+		rvo2.setUser_id(id);
+		rvo2.setTotal(total);
 		reserveService.insertbooking(rvo2);
 		
 		
