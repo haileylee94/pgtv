@@ -20,4 +20,18 @@ PUBLIC "-//mybtis.org//DTD Mapper 3.0//EN"
 	<update id="adm_del_mem">
 		update movie_user set user_state = 0 where user_no = #{num}
 	</update>
+	
+	<select id="adm_mov_count" resultType="int">
+		select count(*) from movietotal
+	</select>
+	
+	<select id="adm_mov_list" parameterType="total" resultType="total">
+		select * from (select rowNum rNum, movienum, moviename, branchname, totalseat, movietotalnum,
+        strdate, poster from (select * from movietotal order by movietotalnum desc))
+		where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
+	</select>
+	
+	<delete id="adm_mov_del">
+		delete from movietotal where movietotalnum = #{num}
+	</delete>
 </mapper>

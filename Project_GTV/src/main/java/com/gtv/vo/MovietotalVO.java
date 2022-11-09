@@ -20,4 +20,8 @@ public class MovietotalVO {
 	private String thname;
 	private int totalseat;
 	private String poster;
+	
+	// ¾îµå¹Î ÆäÀÌÂ¡ º¯¼ö
+	private int startrow;
+	private int endrow;
 }

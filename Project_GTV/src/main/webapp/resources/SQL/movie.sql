@@ -37,7 +37,9 @@ alter table movietotal add totalseat number(20); --전체 좌석
 alter table movietotal add thnum number(20); --상영관 번호
 alter table movietotal add poster varchar2(500); -- 포스터 url
 
-
+select * from (select rowNum rNum, movienum, moviename, branchname, totalseat, movietotalnum,
+        strdate, poster from (select * from movietotal order by movienum desc))
+		where rNum >= 0 and rNum <= 10;
 
 select * from movietotal;
 

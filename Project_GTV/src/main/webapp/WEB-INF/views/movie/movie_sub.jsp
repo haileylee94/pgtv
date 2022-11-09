@@ -83,6 +83,7 @@
          <!-- ly_inner -->
          <form method="post" action="com_write_ok"
             onsubmit="return com_check();">
+            <input type="hidden" name="${_csrf.parameterName}" class="logout" value="${_csrf.token}" />
             <div class="input_request">
                <input type="hidden" name="movienum" value="1"> <input
                   type="hidden" name="moviename" value="공조2">

@@ -63,6 +63,9 @@
 					<input type="search" placeholder="Ready to watch?"> <span>검색</span>
 				</form>
 			</div>
+			<form id="logout" method="post" action="/logout">
+   		    <input type="hidden" name="${_csrf.parameterName}" class="logout" value="${_csrf.token}" />
+			</form>
 			<!-- search_area -->
 		</div>
 		<!-- header -->
