@@ -4,15 +4,22 @@
 .classpath
 .settings/
 .springBeans
+<<<<<<< HEAD
 log4j.xml
 root-context.xml
+=======
+>>>>>>> d15bb0cdb6f4df81ebde5ff30e230790e62323aa
 test/
 target/
 Servers/
 pgtv/
 
+<<<<<<< HEAD
 ## default ignore ##
 
+=======
+<<<<<<< HEAD
+>>>>>>> d15bb0cdb6f4df81ebde5ff30e230790e62323aa
 # Code Recommenders
 .recommenders/
 
@@ -58,6 +65,7 @@ pgtv/
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+<<<<<<< HEAD
 
 
 ##YT ignore##
@@ -65,3 +73,7 @@ replay_pid*
 bin/
 
 
+=======
+=======
+>>>>>>> 9277c815f9cfe7a8ce14fcd45b36a85f984f4fad
+>>>>>>> d15bb0cdb6f4df81ebde5ff30e230790e62323aa

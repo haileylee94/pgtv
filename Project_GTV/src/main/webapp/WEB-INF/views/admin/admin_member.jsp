@@ -43,7 +43,6 @@
     border:1px solid black;
     margin:10px 0px 0px 10px;
 }
-
 #adm_mem_table{
 	width: 100%;
 	
@@ -93,7 +92,7 @@ function del_check() {
 		  	</div>
 		  
 			<div id="admin_cont">
-				<table border="1" id="adm_mem_table">					
+				<table border="1" id="adm_mem_table">
 					<tr>
 						<td align="right"><strong>총 사용자 : ${totalCount }</strong>명</td>
 					</tr>

@@ -1,0 +1,121 @@
+@charset "UTF-8";
+
+.reviews .review-tit .write_mycom{
+	font-size: 15px;
+	border: 3px solid #fff;
+	margin-left: 20px;
+	padding: 10px;
+	border-radius: 10px;
+}
+
+/*.com_ly{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0,0,0,.5);
+	font-size: 0;
+	text-align: center;
+	overflow: hidden;
+	
+}*/
+.com_ly{
+	position: fixed;
+    width: 535px;
+    heigth: 535px;
+    overflow: hidden;
+    top: 150px;
+    left: 50%;
+    margin: 0 0 0 -242px;
+    padding-bottom: 35px;
+    z-index: 500;
+    border-radius: 6px;
+    background-color: #fff;
+    -webkit-box-shadow: 0 7px 31px rgb(0 0 0 / 50%);
+    box-shadow: 0 7px 31px rgb(0 0 0 / 50%);
+}
+
+/*.com_ly:after{
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+	content: '';
+}*/
+
+/*.com_ly .test{
+	display: inline-block;
+	background: #fff;
+	width: 535px;
+	height: 335px;
+	vertical-align: middle;
+}*/
+
+.com_ly .ly_tit{
+	display: block;
+    padding: 14px 19px 0;
+    height: 31px;
+    line-height: 19px;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #2b2b2b;
+}
+
+.ly_inner{
+	display: flex;
+}
+
+.recom{
+	text-align: center;
+}
+
+.com_ly .ly_inner .thumbsup{
+	width: 48px;
+	height: 48px;
+	text-align: center;
+	line-height: 11px;
+	margin-left: 10px;
+	padding-left: 180px;
+}
+
+.com_ly .ly_inner .com_tit{
+	display: block;
+    padding-top: 10px;
+    line-height: 11px;
+    text-align: center;
+    color: #000;
+    font-size: 22px;
+    margin-bottom: 10px;
+    padding-left: 180px;
+}
+
+.com_ly form .input_request textarea{
+	color: #000;
+	font-size: 20px;
+	width: 530px;
+}
+
+/*.btn_complet,
+.btn_cancel{
+	text-align: center;
+	margin-top: 20px;
+}*/
+.btn_cancel{
+	color: #333;
+    font-weight: 500;
+    border: solid 1px #c3c3c3;
+    background-color: #fff;
+    padding: 10px 40px;
+    margin-left: 10px
+   
+}
+
+.btn_complet{
+    color: #fff;
+    font-weight: 500;
+    border: solid 1px #ff5257;
+    background-color: #ff5257;
+    padding: 10px 40px;
+    margin-top: 30px;
+    margin-left: 145px;
+}

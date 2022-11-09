@@ -7,5 +7,39 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="movcom">
 
 
+	<!-- 코멘트 저장 -->
+	<insert id="com_in" parameterType="com">
+		insert into com values (1,'공조2',#{cont_com},sysdate,com_num_seq.nextval)
+	</insert>
   
+  	<!-- 총 코멘트 개수 -->
+  	<select id="c_count" resultType="int"><!--resultType 속성은 반환 자료형 타입이다.  -->
+  		select count(*) from com
+  	</select>
+  	
+  	<!-- 코멘트 목록 -->
+  	<select id="c_list" resultType="com" parameterType="com">
+  		select * from (select rowNum rNum,1,'공조2',cont_com,upload_com,com_num from
+  		(select * from com order by com_num desc))
+  		where rNum &gt;= #{startrow} and rNum &lt;= #{endrow}
+  		<!-- rowNum 컬럼은 오라클에서 테이블생성시 기본으로 알아서 추가되는 시스템 테이블로 최초 레코드 저장시 
+		일련 번호값이 정수형 숫자형으로 저장된다. rNum은 rowNum컬럼의 별칭명. &gt;은 >, &lt;은 <를 의미
+		결국 한페이지에 최대 보여지는 목록 개수를 몇개로 제한한다.-->
+  	</select>
+  	
+  	<!-- 수정 내용 보기 -->
+  	<select id="c_cont" parameterType="int" resultType="com">
+  		select cont_com from com where com_num=#{com_num}
+  	</select>
+  	
+  	<!-- 수정 -->
+  	<update id="c_edit" parameterType="com">
+  		update com set cont_com=#{cont_com} where com_num=#{com_num}
+  	</update>
+  	
+  	<!-- 삭제 -->
+  	<delete id="c_del">
+  		delete from com where com_num=#{com_num}
+  	</delete>
+
 </mapper> 

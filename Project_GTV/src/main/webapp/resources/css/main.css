@@ -1,4 +1,6 @@
-@charset "UTF-8";@charset "UTF-8";
+
+
+@charset "UTF-8";
 @import url('https://fonts.googleapis.com/css?family=Black+Han+Sans:400');
 *{
    list-style: none;
@@ -368,7 +370,15 @@ h4{
 	display: block;
     width: 32px;
 	height: 32px; 
+<<<<<<< HEAD
 	background: url(../image/globe.svg) no-repeat center;
+=======
+<<<<<<< HEAD
+	background: url(../images/main_movie/globe.svg) no-repeat center;
+=======
+	background: url(../image/globe.svg) no-repeat center;
+>>>>>>> 9e8bef23461baa45af0ce955272581c0cf8a96c8
+>>>>>>> 9277c815f9cfe7a8ce14fcd45b36a85f984f4fad
 }
 
 .lan-menu ul{

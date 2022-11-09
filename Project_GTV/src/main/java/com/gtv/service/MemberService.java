@@ -15,4 +15,8 @@ public interface MemberService {
 
 	void updatePwd(MemberVO m);
 
+	MemberVO view_info(String id);
+
+	void edit_info(MemberVO vo);
+
 }

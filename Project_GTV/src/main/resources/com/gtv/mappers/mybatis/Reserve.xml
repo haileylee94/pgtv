@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybtis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace = "Reserve"> 
+
+	<select id="getmovie" resultType="total">
+		select * from movietotal where movietotalnum=#{movietotalnum}
+	</select>
+	
+	<select id="seatview" resultType="seat">
+		select * from seatnumber where movietotalnum=#{movietotalnum}
+	</select>
+	
+	<select id="getseat" resultType="seat">
+		select * from seat_theater where movietotalnum=#{movietotalnum}
+	</select>
+	
+	<insert id="insertbook">
+		insert into seat_theater values(#{movietotalnum},#{seat})
+	</insert>
+	
+	<insert id="insertbooking">
+		insert into reservation values(reservenum_seq.nextval,#{movietotalnum},#{adult},#{teen},#{seat},#{payment},#{user_id},#{total})
+	</insert>
+	
+	
+	
+	
+</mapper>

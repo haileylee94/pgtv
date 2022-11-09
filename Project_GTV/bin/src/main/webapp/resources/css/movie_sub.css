@@ -1,0 +1,166 @@
+@charset "UTF-8";
+
+.video-wrap,
+.video-wrap video{
+	width: 100%;
+	height: 500px;
+}
+
+.video-wrap video{
+	margin-top: 150px;
+}
+	
+.detail-top-wrap{
+	position: relative;
+	width: 1300px;
+	margin: 250px auto 100px auto;
+	/* background-color: pink; */
+	display: flex;
+}
+
+.detail-gongjo{
+	margin: 50px 0px 30px 30px;
+}
+
+.tit-info{
+	font-size: 36px;
+	font-weight: bold;
+	margin-bottom: 30px;
+}
+
+.detail-info1{
+	display: flex;
+	margin-bottom: 30px;
+}
+
+.detail-info1 li{
+	margin-right: 80px;
+	font-size: 26px;
+}
+
+.detail-info1 li strong{
+	font-weight: bold;
+}
+
+.star-review{
+	width: 48px;
+	height: 48px;
+	position: absolute;
+	background: #1b1b1b url(../images/main_movie/star.png) no-repeat center;
+	margin-right: 50px;
+	
+}
+
+.gongjo-tit{
+	margin-left: 50px;
+}
+
+.detail-info2{
+	margin-left: 20px;
+	margin-top: 30px;
+	font-size: 20px;
+}
+.detail-info2 li{
+	margin-bottom: 10px;
+}
+
+.detail-info2 li em{
+	margin-right: 10px;
+}
+
+.detail-info2 li strong{
+	color: #97a09e;
+}
+.detail-info2 .sub-info4 strong em{
+	margin-right: 30px;
+	color: #97a09e;
+}
+
+.detail-botton{
+	float: right;
+}
+
+.detail-botton #click-like{
+	width: 50px;
+	height: 50px;
+	margin-right: 20px;
+}
+
+.detail-botton #booking-btm{
+	float: right;
+	/* bottom: 0; */
+	/* border: 1px solid #e9383f; */
+	border-radius: 14px;
+	background-color: #e9383f;
+	font-size: 22px;
+	font-weight: bold;
+	color: #eee;
+	text-align: center;
+	padding: 5px 30px ;
+	width: 150px;
+	/*height: 40px;*/
+	line-height: 40px;
+}
+
+.detail-cont-wrap{
+	display: flex;
+	margin: 0px 100px;
+}
+
+.movie-detail,
+.reviews{
+	position: relative;
+	width: 50%;
+	margin: 0px auto 100px auto;
+	/* background-color: pink; */
+	/* display: flex; */
+}
+
+.movie-info,
+.review-tit{
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.gongjo-content{
+	font-size: 20px;
+}
+.gongjo-content li{
+	margin-bottom: 10px;
+}
+
+.gongjo-content .cont1{
+	font-weight: bold;
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+.reviews .person img{
+	width: 50px;
+	height: 50px;
+}
+
+.person{
+	display: flex;
+	margin-left: 230px;
+}
+#women,
+#men{
+	margin: 40px 50px 20px 80px;
+}
+
+#graph img{
+	width: 70px;
+	height: 70px;
+	margin-left: 390px;
+}
+
+#graph .age{
+	font-size: 12px;
+	margin-left: 385px;
+}
+
+
+

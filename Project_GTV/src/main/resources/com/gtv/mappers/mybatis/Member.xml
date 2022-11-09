@@ -30,6 +30,7 @@ PUBLIC "-//mybtis.org//DTD Mapper 3.0//EN"
 		select mem.user_id, user_no, user_pw, user_name, user_state, user_date, authority
 			from movie_user mem LEFT OUTER JOIN gtv_authorities auth on mem.user_id = auth.user_id
 			where mem.user_id = #{id} and mem.user_state = 1
+
 	</select>
 	
 	<insert id = "m_in">
@@ -54,8 +55,17 @@ PUBLIC "-//mybtis.org//DTD Mapper 3.0//EN"
 	<select id = "Ser_pwd" resultType = "member">
 	 select * from movie_user where user_id = #{user_id} and user_name = #{user_name}
 	</select>
-	 
-	<select id = "pw_edit">
+	
+	<update id = "pw_edit">
 	 update movie_user set user_pw = #{user_pw} where user_id = #{user_id}
+	</update>
+	
+	<select id = "vw_info" resultType = "member">
+	 select * from movie_user where user_id = #{id}
 	</select>
+	
+	<update id = "edit_info">
+	 update movie_user set user_name = #{user_name}, user_phone1 = #{user_phone1}, 
+	 user_phone2 = #{user_phone2}, user_phone3 = #{user_phone3}, email = #{email}, email_domain = #{email_domain} where user_id = #{user_id}
+	</update>
 </mapper>

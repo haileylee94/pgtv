@@ -15,5 +15,9 @@ public interface MemberDAO {
 	void updatePwd(MemberVO m);
 
 	void insertAuth(String id);
+
+	MemberVO view_info(String id);
+
+	void edit_info(MemberVO vo);
 	
 }

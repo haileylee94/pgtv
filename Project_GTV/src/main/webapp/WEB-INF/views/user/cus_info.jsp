@@ -55,7 +55,7 @@ td, th {
 }
 #cus_info_main{
  width:100%;
- height:1000px;
+ height:1500px;
  background-color:white;
 }
 #cus_info_main li a span{
@@ -95,15 +95,14 @@ li a:hover{
  position:absolute;
  left:50px;
  top:550px;
- width:65%;
- 
+ width:57%;
 }
 </style>
 
 <script>
 $(function(){
 	 $('#payment_info_btn').click(function(){
-		 $('#payment_history').load('payment_history.jsp');
+		 $('#payment_history').load('payment_history');
 		 $('#inquiry_history').empty();
 		 $('#info_edit').empty();
 	 });
@@ -119,7 +118,9 @@ $(function(){
 
 $(function(){
 	 $('#info_edit_btn').click(function(){
-		 
+		 $('#info_edit').load('info_edit');
+		 $('#inquiry_history').empty();
+		 $('#payment_history').empty();
 	 });
 });
 

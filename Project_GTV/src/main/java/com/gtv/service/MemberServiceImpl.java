@@ -39,4 +39,15 @@ public class MemberServiceImpl implements MemberService {
 	public void updatePwd(MemberVO m) {
 		this.MemberDao.updatePwd(m);		
 	}
+
+	@Override
+	public MemberVO view_info(String id) {
+		return this.MemberDao.view_info(id);
+	}
+
+	@Override
+	public void edit_info(MemberVO vo) {
+		this.MemberDao.edit_info(vo);
+		
+	}
 }

@@ -1,10 +1,10 @@
 package com.gtv.vo;
 
-import lombok.Getter;
-import lombok.Setter;
 
-@Setter
-@Getter
+
+import lombok.Data;
+
+@Data
 public class MovieComVO {
 
 	private int mov_no;

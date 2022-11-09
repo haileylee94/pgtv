@@ -46,17 +46,25 @@ select * from movie_user;
 alter table movie_user add email varchar2(30) not null;
 alter table movie_user add email_domain varchar2(30) not null;
 
+<<<<<<< HEAD
 delete from movie_user where user_id = 'member4';
 delete from gtv_authorities where user_id = 'member4';
 
 drop table movie_user;
 drop sequence user_no_seq;
+=======
+delete from movie_user where user_id = 'member';
+delete from gtv_authorities where user_id = 'member';
+
+drop table movie_user;
+>>>>>>> d15bb0cdb6f4df81ebde5ff30e230790e62323aa
 drop table gtv_authorities;
 
 insert into gtv_authorities values ('member', 'ROLE_MEMBER');
 
 commit;
 
+<<<<<<< HEAD
 update gtv_authorities set authority = 'ROLE_ADMIN' where user_id = 'admin';
 
 select * from (select rowNum rNum, user_no, user_id, user_name, user_gender, 
@@ -78,3 +86,6 @@ CREATE TABLE persistent_logins (
 	token varchar(64) NOT NULL,
 	last_used timestamp NOT NULL
  );
+=======
+update gtv_authorities set authority = 'ROLE_ADMIN' where user_id = 'admin';
+>>>>>>> d15bb0cdb6f4df81ebde5ff30e230790e62323aa
