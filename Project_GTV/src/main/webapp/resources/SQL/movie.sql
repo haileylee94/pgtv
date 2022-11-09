@@ -142,26 +142,6 @@ start with 100000
 INCREMENT by 1
 NOCACHE;
 
-
-/*
-create table seatnumber(
-    movietotalnum number(20) --��ȭ������ȣ(fk)
-    ,seatnum varchar2(38) --�¼� ��ȣ
-    ,CONSTRAINT seatnumber_movietotalnum_fk FOREIGN key(movietotalnum) REFERENCES movietotal(movietotalnum)
-);
-
-select * from seatnumber;
-
-insert into seatnumber values(1,'a1');
-insert into seatnumber values(1,'a5');
-
-select seatnum from seatnumber where movietotalnum=1;
-
-
-drop table seatnumber;
-*/
-
-
 create table com(
     com_num number(20) primary key
     ,movienum number(20) --��ȭ��ȣ(fk  pk)
@@ -173,9 +153,6 @@ create table com(
      ,CONSTRAINT com_moviename_fk FOREIGN key(moviename) REFERENCES movie(moviename)
 );
 
-
-
-
 select * from com;
 
 delete com;
@@ -186,6 +163,29 @@ create SEQUENCE com_num_seq
 start with 1
 INCREMENT by 1
 NOCACHE;
+
+/*test*/
+create table movie_sub(
+    likebtn number(20),
+    movienum number(20),--fk
+    moviename varchar2(38)--fk
+);
+
+alter table movie_sub add movienum number(20);
+alter table movie_sub add constraint movie_sub_movienum_fk FOREIGN key(movienum) REFERENCES movie(movienum);
+alter table movie_sub add moviename varchar2(38);
+alter table movie_sub add constraint movie_sub_moviename_fk FOREIGN key(moviename) REFERENCES movie(moviename);
+
+alter table movie_sub modify likebtn default 0;
+insert into movie_sub(movienum,moviename) values(1,'공조2');
+
+update movie_sub set likebtn=likebtn+1 where movienum=1;
+update movie_sub (likebtn) set (select max(likebtn)+1 from movie_sub)next) where movienum=1;
+
+select * from movie_sub;
+
+select likebtn from movie_sub where movienum=1;
+commit;
 
 
 

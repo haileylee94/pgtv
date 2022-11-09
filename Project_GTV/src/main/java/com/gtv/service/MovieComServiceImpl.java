@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.gtv.dao.MovieComDAO;
 
 import com.gtv.vo.ComVO;
+import com.gtv.vo.MovieVO;
 
 
 @Service
@@ -47,6 +48,17 @@ public class MovieComServiceImpl implements MovieComService {
 	@Override
 	public void delCom(int com_num) {
 		moviecomDao.delCom(com_num);
+	}
+
+
+	@Override
+	public int getlikeCount(MovieVO movieVo) {
+		return moviecomDao.getlikeCount(movieVo);
+	}
+
+	@Override
+	public int getTotalCount(MovieVO movieVo) {
+		return moviecomDao.getTotalCount(movieVo);
 	}
 
 	

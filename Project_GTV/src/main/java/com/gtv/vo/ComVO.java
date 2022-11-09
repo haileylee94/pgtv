@@ -14,8 +14,9 @@ public class ComVO {
 	private String user_id;
 
 	
-	//����¡
+	//paging
 	private int startrow;
 	private int endrow;
+	
 
 }

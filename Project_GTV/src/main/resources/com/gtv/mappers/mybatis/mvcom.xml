@@ -6,10 +6,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="movcom">
 
-
-
-  
-
 	<!-- 코멘트 저장 -->
 	<insert id="com_in" parameterType="com">
 		insert into com values (1,'공조2',#{cont_com},sysdate,com_num_seq.nextval)
@@ -44,5 +40,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	<delete id="c_del">
   		delete from com where com_num=#{com_num}
   	</delete>
+  	
+  	<!-- like btn -->
+  	<update id="l_btn" parameterType="movie">
+  		update movie_sub set likebtn=likebtn+1 where movienum=1 and likebtn=#{likebtn}
+  	</update>
+  	
+  	<!-- total like -->
+  	<select id="l_cont" parameterType="int">
+  		select likebtn from movie_sub where movienum=1
+  	</select>
 
 </mapper> 

@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -43,6 +44,8 @@ public class MovieComController {
 //      }
 	   
 	  int totalCount=this.moviecomService.getRowCount();//ÃÑ ÄÚ¸àÆ® °³¼ö
+	  
+	  
       ModelAndView mv = new ModelAndView();
       movieVo.setMovienum(1);
       movieVo.setMoviename("°øÁ¶2");
@@ -50,8 +53,23 @@ public class MovieComController {
       // /WEB-INF/views/movie/com_write.jsp
       //mv.addObject("page", page);
       mv.addObject("totalCount", totalCount);
+      //mv.addObject("likebtn", likebtn);
       return mv;
    }//movie_sub()
+   
+//   @ResponseBody
+//   @PostMapping("/movie_sub")
+//   public ModelAndView likeUp(MovieVO m, HttpServletRequest request) {
+//	   moviecomService.getlikeCount(m);//likebtn count
+//	  
+//	   int likebtn = moviecomService.getTotalCount(m);
+//	   
+//	   ModelAndView lm=new ModelAndView();
+//	   lm.setViewName("jsonView");
+//	   lm.addObject("likebtn", likebtn);
+//	   
+//	   return lm;
+//   }
    
    //ÄÚ¸àÆ® ÀúÀå
    @PostMapping("/com_write_ok")

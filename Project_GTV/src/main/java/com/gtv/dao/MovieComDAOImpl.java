@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 
 import com.gtv.vo.ComVO;
+import com.gtv.vo.MovieVO;
 
 
 @Repository
@@ -46,6 +47,16 @@ public class MovieComDAOImpl implements MovieComDAO {
 	@Override
 	public void delCom(int com_num) {
 		sqlSession.delete("c_del", com_num);
+	}
+
+	@Override
+	public int getlikeCount(MovieVO MovieVo) {
+		return sqlSession.update("l_btn", MovieVo);
+	}
+
+	@Override
+	public int getTotalCount(MovieVO movieVo) {
+		return sqlSession.selectOne("l_cont", movieVo);
 	}
 
 

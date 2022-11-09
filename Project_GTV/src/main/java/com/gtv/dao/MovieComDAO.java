@@ -7,6 +7,7 @@ package com.gtv.dao;
 import java.util.List;
 
 import com.gtv.vo.ComVO;
+import com.gtv.vo.MovieVO;
 
 public interface MovieComDAO {
 
@@ -21,6 +22,10 @@ public interface MovieComDAO {
 	void editCom(ComVO ec);
 
 	void delCom(int com_num);
+
+	int getlikeCount(MovieVO movieVo);
+
+	int getTotalCount(MovieVO movieVo);
 
 
 }
