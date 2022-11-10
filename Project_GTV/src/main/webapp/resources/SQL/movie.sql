@@ -50,6 +50,13 @@ insert into movietotal values(1,2,1,108,'2022.11.11','11','40','13','40',4,'공�
 insert into movietotal values(2,1,1,108,'2022.11.11','13','10','14','40',5,'동감','강남','1관',108,5,'https://img.megabox.co.kr/SharedImg/2022/10/27/sR9KJsn9NMeZhJbakY9FsDcFcAO6A92k_420.jpg');
 insert into movietotal values(2,1,1,108,'2022.11.11','16','00','17','30',6,'동감','강남','2관',108,6,'https://img.megabox.co.kr/SharedImg/2022/10/27/sR9KJsn9NMeZhJbakY9FsDcFcAO6A92k_420.jpg');
 
+-- 여기 진호씨한테 줘야함!!!!
+create sequence movietotalnum_seq
+start with 7 -- 7부터 시작
+increment by 1 -- 1씩 증가
+nocache; -- 임시메모리 사용안함
+
+
 delete movietotal;
 
 select * from movietotal where movienum=1 and theaternum=1 and strdate='2022.11.7';

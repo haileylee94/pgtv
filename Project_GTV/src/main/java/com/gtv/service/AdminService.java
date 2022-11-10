@@ -19,4 +19,6 @@ public interface AdminService {
 
 	int deleteMovie(int num);
 
+	int addMovie(MovietotalVO mov);
+
 }

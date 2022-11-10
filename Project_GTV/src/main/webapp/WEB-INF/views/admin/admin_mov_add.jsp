@@ -42,14 +42,13 @@
     width:1278px; height:800px;
     border:1px solid black;
     margin:10px 0px 0px 10px;
+    display : flex;
+  	justify-content: center;
+  	align-items : center;
 }
-#adm_mem_table{
-	width: 100%;
-	
-}
-
-#adm_poster{
-	width: 138px; height: 200px;
+#adm_mov_table{
+	width: 600px;
+	height: 700px;
 }
 a:link{text-decoration:none;}
 a:visited{text-decoration:none;}
@@ -95,81 +94,121 @@ function del_check() {
 		  
 			<div id="admin_cont">
 			
-				<table border="1" id="adm_mem_table">
+			<form action="./adm_movie_add_ok">
+			<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" />
+				<table border="1" id="adm_mov_table">
 					<tr>
-						<td align="center"><strong>총 영화 : ${totalCount }</strong>편</td>
+						<th>영화 제목</th> 
+						<th>
+							<select name = "moviename">
+								<option value="공조2">공조2</option>
+								<option value="동감">동감</option>
+								<option value="데시벨">데시벨</option>
+							</select>
+						</th>
 					</tr>
-					
 					<tr>
-						<th>포스터</th> <th>.NO</th> <th>영화명</th> <th>지점</th> <th>좌석</th> <th>상영날짜</th> <th></th>
+						<th>영화 제목 확인</th>
+						<th>
+							<select name = "movienum">
+								<option value="1">공조2</option>
+								<option value="2">동감</option>
+								<option value="3">데시벨</option>
+							</select>
+						</th>
 					</tr>
-					
-					<c:if test="${!empty list }">
-						<c:forEach var="mov" items="${list }">
-								<tr>
-									<th><img src="${mov.poster }" id="adm_poster" alt="포스터"></th>
-									<th>${mov.movietotalnum }</th>
-									<th>${mov.moviename }</th>
-									<th>${mov.branchname }</th>
-									<th>${mov.totalseat }</th>
-									<th>${mov.strdate }</th>
-									<th>
-									<form action="/admin/mov_delete_ok?movietotalnum=${mov.movietotalnum }" onsubmit="return del_check();" method="post">
-										<input type="hidden" name="${_csrf.parameterName}" class="logout" value="${_csrf.token}" />
-										<input type="submit" value="영화 삭제" />
-									</form>
-									</th>
-								</tr>
-						</c:forEach>
-					</c:if>
-					
-					<c:if test="${empty list }">	
-						<tr>
-						 <th colspan="6">게시된 영화가 없습니다.</th>
-						</tr>
-					</c:if>
-					
-					<%-- 페이징 쪽나누기 부분 --%>
 					<tr>
-						<th colspan="7">
-							<c:if test="${page <= 1}">
-								[이전]&nbsp;
-							</c:if>
-							
-							<c:if test="${page > 1 }">
-								<a href="/admin/movie?page=${page -1}">[이전]</a>&nbsp;
-							</c:if>
-							
-							<%-- 헌재 쪽번호 출력 --%>
-							<c:forEach var="a" begin="${startpage}" end="${endpage }" step="1">
-								<c:if test="${a == page }"> <%-- 현재 쪽번호가 선택된 경우 --%>
-									<${a }>
-								</c:if>
-								
-								<c:if test="${a != page }"> <%-- 현재 쪽번호가 선택되지 않은경우 --%>
-									<a href="/admin/movie?page=${a }">[${a }]</a>&nbsp;
-								</c:if>
-							</c:forEach>
-							
-							<c:if test="${page >= maxpage }">
-							다음
-							</c:if>
-							
-							<c:if test="${page < maxpage }">
-								<a href="/admin/movie?page=${page+1 }">[다음]</a>
-							</c:if>
+						<th>지점 번호</th>
+						<th>
+							<select name = "theaternum">
+									<option value="1">강남</option>
+									<option value="2">잠실</option>
+									<option value="11">판교</option>
+									<option value="12">구리</option>
+							</select>
+						</th>
+					</tr>
+					<tr>
+						<th>지점 번호 확인</th>
+						<th>
+							<select name = "branchname">
+								<option value="강남">강남</option>
+								<option value="잠실">잠실</option>
+								<option value="판교">판교</option>
+								<option value="구리">구리</option>
+							</select>
+						</th>
+					</tr>
+					<tr>
+						<th>지역번호</th>
+						<th>
+							<select name = "regionnum">
+									<option value="1">서울</option>
+									<option value="2">경기</option>
+							</select>
+						</th>
+					</tr>
+					<tr>
+						<th>좌석</th>
+						<th>좌석은 108석으로 고정됩니다.</th>
+					</tr>
+					<tr>
+						<th>상영일</th>
+						<th>
+							<input type="date" name="strdate"/>
+						</th>
+					</tr>
+					<tr>
+						<th>시작시간</th>
+						<th>
+							<select name = "strhour">
+								<c:forEach begin="0" end="24" var="i">
+									<option value="${i }">${i }</option>
+								</c:forEach>						
+							</select>시 
+							<select name = "strmin">
+								<c:forEach begin="0" end="59" var="j">
+									<option value="${j }">${j }</option>
+								</c:forEach>						
+							</select>분
+						</th>
+					</tr>
+					<tr>
+						<th>종료시간</th>
+						<th>
+							<select name = "endhour">
+								<c:forEach begin="0" end="24" var="i">
+									<option value="${i }">${i }</option>
+								</c:forEach>						
+							</select>시 
+							<select name = "endmin">
+								<c:forEach begin="0" end="59" var="j">
+									<option value="${j }">${j }</option>
+								</c:forEach>
+							</select>분
 						</th>
 					</tr>
 					
 					<tr>
-						<td colspan="7" align="right" style="padding-right: 14px;">
-							<form action="/admin/movie_add" method="post">
-								<input type="hidden" name="${_csrf.parameterName}" class="logout" value="${_csrf.token}" />
-								<input type="submit" value="영화 추가" />
-							</form>
-						</td>
+						<th>상영관</th>
+						<th>
+							<select name = "thname">
+								<option value="1관">1관</option>
+								<option value="2관">2관</option>
+							</select>
+						</th>
+					</tr>
+					<tr>
+						<th>포스터 url</th>
+						<th><input type="text" name="poster"/></th>
+					</tr>
+					<tr>
+						<th></th><th><input type="submit" value="영화 등록"/></th>
 					</tr>
 				</table>
+				<input type="hidden" name="totalseat" value="108"/>
+				<input type="hidden" name="remainseat" value="108"/>
+			</form>
 			
 			</div>
 	 </div>

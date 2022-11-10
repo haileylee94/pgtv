@@ -44,6 +44,11 @@ public class AdminServiceImpl implements AdminService {
 	public int deleteMovie(int num) {
 		return this.adminDao.deleteMovie(num);
 	}
+
+	@Override
+	public int addMovie(MovietotalVO mov) {
+		return this.adminDao.addMovie(mov);
+	}
 	
 	
 }

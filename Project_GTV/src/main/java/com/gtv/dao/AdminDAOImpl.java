@@ -44,6 +44,11 @@ public class AdminDAOImpl implements AdminDAO {
 	public int deleteMovie(int num) {
 		return this.sqlSession.delete("adm_mov_del", num);
 	}
+
+	@Override
+	public int addMovie(MovietotalVO mov) {
+		return this.sqlSession.insert("adm_mov_add", mov);
+	}
 	
 	
 }

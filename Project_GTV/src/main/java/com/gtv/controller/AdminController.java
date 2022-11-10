@@ -152,10 +152,45 @@ public class AdminController {
 		}
 	}
 	
-	// 영화 추가
+	// 영화 추가 페이지
 	@RequestMapping("movie_add")
 	public String movieAdd() {
 		return "admin/admin_mov_add";
+	}
+	
+	// 영화 추가 확인
+	@RequestMapping("adm_movie_add_ok")
+	public void movie_add_ok(MovietotalVO mov, HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		// 날짜 yyyy.mm.dd로 변환
+		String date = request.getParameter("strdate");
+		String[] date_cut = date.split("-");
+		mov.setStrdate(date_cut[0] + "." + date_cut[1] + "." + date_cut[2]);
+		
+		// 시작시,분, 종료시,분 일의자리수 앞에 0 추가
+		int start_h = Integer.parseInt(request.getParameter("strhour"));
+		mov.setStrhour(String.format("%02d", start_h));
+		
+		int start_m = Integer.parseInt(request.getParameter("strmin"));
+		mov.setStrmin(String.format("%02d", start_m));
+		
+		int end_h = Integer.parseInt(request.getParameter("endhour"));
+		mov.setEndhour(String.format("%02d", end_h));
+		
+		int end_m = Integer.parseInt(request.getParameter("endmin"));
+		mov.setEndmin(String.format("%02d", end_m));
+		
+		int info = this.adminService.addMovie(mov);
+		
+		if(info == 1) {
+			out.println("<script>");
+			out.println("alert('등록이 완료되었습니다.');");
+			out.println("location='/admin/movie';");
+			out.println("</script>");
+		}
 	}
 	
 }

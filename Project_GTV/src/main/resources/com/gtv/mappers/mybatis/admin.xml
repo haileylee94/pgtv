@@ -34,4 +34,10 @@ PUBLIC "-//mybtis.org//DTD Mapper 3.0//EN"
 	<delete id="adm_mov_del">
 		delete from movietotal where movietotalnum = #{num}
 	</delete>
+	
+	<insert id="adm_mov_add" parameterType="total">
+		insert into movietotal values (#{movienum}, #{theaternum}, #{regionnum}, #{remainseat}, 
+			#{strdate}, #{strhour}, #{strmin}, #{endhour}, #{endmin}, movietotalnum_seq.nextval , #{moviename}, 
+			#{branchname}, #{thname}, #{totalseat}, movietotalnum_seq.nextval, #{poster})
+	</insert>
 </mapper>
